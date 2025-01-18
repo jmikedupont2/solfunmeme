@@ -12,8 +12,8 @@ import Video from "@/components/Video";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Free Next.js Template for Startup and SaaS",
-  description: "This is Home for Startup Nextjs Template",
+  title: "This is the official website repository for the $SOLFUNMEME Zero Ontology System",
+  description: "$SOLFUNMEME CA BwUTq7fS6sfUmHDwAiCQZ3asSiPEapW5zDrsbwtapump",
   // other metadata
 };
 
