@@ -17,20 +17,22 @@ export const metadata: Metadata = {
   // other metadata
 };
 
+//      <Video />
+//      <Brands />
+//    <Testimonials />
+//      <Pricing />
+//      <Hero />
+//      <Features />
+//        <Blog />
+//      <Contact />
+
 export default function Home() {
   return (
     <>
       <ScrollUp />
-      <Hero />
-      <Features />
-      <Video />
-      <Brands />
       <AboutSectionOne />
       <AboutSectionTwo />
-      <Testimonials />
-      <Pricing />
-      <Blog />
-      <Contact />
+
     </>
   );
 }
