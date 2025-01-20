@@ -47,7 +47,6 @@ pnpm start
 ```
 
 
-
 # SOLFUNMEME Blub
 
 HMEKzp's Zero Ontology System (SOLFUNMEME) 
