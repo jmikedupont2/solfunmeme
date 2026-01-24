@@ -59,10 +59,10 @@ const featuresData: Feature[] = [
     ),
     title: "Tailwind CSS",
     paragraph:
-      "Tuae nam ex similique incidunt expedita exerci tationem laudantium. Repellendus quisquam numquam perferendis earum sapiente non tempore? Fugit repellat ut maiores.",
+      "Modern styling with Tailwind CSS. Responsive design, dark mode support, and beautiful UI components out of the box.",
   },
   {
-    id: 1,
+    id: 5,
     icon: (
       <svg width="40" height="40" viewBox="0 0 40 40" className="fill-current">
         <path
@@ -74,10 +74,10 @@ const featuresData: Feature[] = [
     ),
     title: "Fully Customizable",
     paragraph:
-      "Tuae nam ex similique incidunt expedita exerci tationem laudantium. Repellendus quisquam numquam perferendis earum sapiente non tempore? Fugit repellat ut maiores.",
+      "Adapt the platform to your needs. Configure governance rules, resource allocation, and DAO parameters to match your vision.",
   },
   {
-    id: 1,
+    id: 6,
     icon: (
       <svg width="40" height="45" viewBox="0 0 40 45" className="fill-current">
         <path
@@ -89,7 +89,7 @@ const featuresData: Feature[] = [
     ),
     title: "Free and Open-Source",
     paragraph:
-      "Tuae nam ex similique incidunt expedita exerci tationem laudantium. Repellendus quisquam numquam perferendis earum sapiente non tempore? Fugit repellat ut maiores.",
+      "Built on Solana. Transparent governance. All code and data publicly verifiable. Community-driven development.",
   },
 ];
 export default featuresData;
