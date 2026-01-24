@@ -37,14 +37,32 @@ SOLFUNMEME has evolved from a meme token into a **DAO-driven AI infrastructure p
 - Pay only for permanent storage (burn SOL)
 - Complete audit trail on HuggingFace
 
-### 4. AI-Ticket System (CRQ-002)
+### 4. Multi-Token Resource Portfolio
 
-**GitHub search → AI tickets → Pipelight automation**
+**Deploy resources across multiple networks**
 
-- 14,000+ repositories analyzed
-- Automated ticket generation from search results
-- Pipelight pipeline automation
-- Nix-based reproducible builds
+- Portfolio of tokens for compute deployment
+- Multi-chain resource allocation
+- Optimal cost/performance selection
+- Automatic network arbitrage
+
+### 5. AI-Ticket System
+
+**Human/AI collaboration via ticket interface**
+
+- AI-driven ticket generation and triage
+- Human oversight and approval workflow
+- Automated task execution via Pipelight
+- Complete audit trail in parquet files
+
+### 6. SuperGit (In Progress)
+
+**Unified git repository search and analysis**
+
+- GitHub search integration
+- 14,000+ repositories indexed
+- Cross-repo code analysis
+- Automated discovery and cataloging
 
 ## Technical Infrastructure
 
@@ -67,11 +85,11 @@ SOLFUNMEME has evolved from a meme token into a **DAO-driven AI infrastructure p
 
 ### Compute Network
 
-**Akash integration for monetization**:
+**Multi-token resource deployment**:
 - Developers attach computers to DAO
 - Earn tokens for compute contributions
-- AI quota pooling across members
-- Automatic resource allocation
+- Portfolio of deployment tokens (Solana, ETH, etc.)
+- Automatic resource allocation across networks
 
 ## Value Proposition
 
@@ -108,8 +126,9 @@ SOLFUNMEME has evolved from a meme token into a **DAO-driven AI infrastructure p
 - ✅ Recursive DAO bootstrap
 - ✅ Event-driven blockchain
 - ✅ 71-shard decomposition
-- 🚧 CRQ-002 implementation
-- 🚧 Akash integration
+- 🚧 AI-Ticket human/AI interface
+- 🚧 SuperGit repository indexing
+- 🚧 Multi-token resource portfolio
 
 ### Q2 2026
 
@@ -202,7 +221,7 @@ SOLFUNMEME has evolved from a meme token into a **DAO-driven AI infrastructure p
 ### Technical
 
 - Complex system integration
-- Akash network dependency
+- Multi-chain deployment complexity
 - Parquet file management
 - zkgood circuit complexity
 
