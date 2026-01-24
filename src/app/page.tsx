@@ -12,8 +12,8 @@ import Video from "@/components/Video";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Free Next.js Template for Startup and SaaS",
-  description: "This is Home for Startup Nextjs Template",
+  title: "SOLFUNMEME - Zero Ontology System | DAO-Driven AI Infrastructure",
+  description: "Every wallet is sacred. Recursive DAO bootstrap, zkgood proofs, and multi-chain resource deployment.",
   // other metadata
 };
 
@@ -23,13 +23,8 @@ export default function Home() {
       <ScrollUp />
       <Hero />
       <Features />
-      <Video />
-      <Brands />
       <AboutSectionOne />
       <AboutSectionTwo />
-      <Testimonials />
-      <Pricing />
-      <Blog />
       <Contact />
     </>
   );
