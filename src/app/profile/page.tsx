@@ -5,8 +5,9 @@ import { ThemeSupa } from '@supabase/auth-ui-shared'
 import { supabase } from '@/lib/supabase'
 import { useEffect, useState } from 'react'
 import { User } from '@supabase/supabase-js'
+import dynamic from 'next/dynamic'
 
-export default function ProfilePage() {
+function ProfilePage() {
   const [user, setUser] = useState<User | null>(null)
   const [email, setEmail] = useState('')
   const [wallets, setWallets] = useState<string[]>([])
@@ -172,3 +173,5 @@ export default function ProfilePage() {
     </section>
   )
 }
+
+export default dynamic(() => Promise.resolve(ProfilePage), { ssr: false })
