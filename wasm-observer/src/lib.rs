@@ -1,9 +1,19 @@
 use wasm_bindgen::prelude::*;
 use serde::{Serialize, Deserialize};
 use sha2::{Sha256, Digest};
+use ed25519_dalek::{SigningKey, VerifyingKey};
+
+#[derive(Serialize, Deserialize, Clone)]
+struct Genesis {
+    public_key: String,
+    encrypted_private_key: String,
+    birth_hash: String,
+    timestamp: f64,
+}
 
 #[derive(Serialize, Deserialize, Clone)]
 struct Witness {
+    genesis: Option<Genesis>,
     events: Vec<UserAction>,
     data_inputs: Vec<DataInput>,
     attestations: Vec<Attestation>,
@@ -62,6 +72,7 @@ impl Observer {
         let session_id = format!("{}", js_sys::Date::now() as u64);
         Observer {
             witness: Witness {
+                genesis: None,
                 events: Vec::new(),
                 data_inputs: Vec::new(),
                 attestations: Vec::new(),
@@ -70,6 +81,44 @@ impl Observer {
                 session_id,
             },
         }
+    }
+
+    pub fn genesis(&mut self) -> String {
+        use base64::{Engine as _, engine::general_purpose};
+        
+        // Generate keypair from timestamp seed
+        let seed_data = format!("{}:{}", self.witness.session_id, js_sys::Date::now());
+        let mut hasher = Sha256::new();
+        hasher.update(seed_data.as_bytes());
+        let seed_hash = hasher.finalize();
+        let mut seed = [0u8; 32];
+        seed.copy_from_slice(&seed_hash[..32]);
+        
+        let signing_key = SigningKey::from_bytes(&seed);
+        let verifying_key = signing_key.verifying_key();
+        
+        // Birth hash
+        let birth_hash = self.hash_data(&seed_data);
+        
+        // Simple XOR encryption with birth hash
+        let private_bytes = signing_key.to_bytes();
+        let key_bytes = birth_hash.as_bytes();
+        let encrypted: Vec<u8> = private_bytes.iter()
+            .enumerate()
+            .map(|(i, &b)| b ^ key_bytes[i % key_bytes.len()])
+            .collect();
+        
+        let genesis = Genesis {
+            public_key: general_purpose::STANDARD.encode(verifying_key.as_bytes()),
+            encrypted_private_key: general_purpose::STANDARD.encode(&encrypted),
+            birth_hash: birth_hash.clone(),
+            timestamp: js_sys::Date::now(),
+        };
+        
+        self.witness.genesis = Some(genesis.clone());
+        self.attest("self".to_string(), "genesis_witnessed".to_string());
+        
+        serde_json::to_string(&genesis).unwrap_or_default()
     }
 
     pub fn observe_move(&mut self, x: i32, y: i32) {

@@ -14,3 +14,6 @@ serde_json = "1.0"
 js-sys = "0.3"
 sha2 = "0.10"
 base64 = "0.21"
+getrandom = { version = "0.2", features = ["js"] }
+ed25519-dalek = "2.1"
+rand = "0.8"
