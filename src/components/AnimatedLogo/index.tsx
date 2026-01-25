@@ -5,6 +5,7 @@ const AnimatedLogo = ({ size = 120 }: { size?: number }) => {
   const svgRef = useRef<SVGSVGElement>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [distance, setDistance] = useState(0);
+  const [maxReached, setMaxReached] = useState<number[]>(Array(8).fill(80));
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -20,7 +21,17 @@ const AnimatedLogo = ({ size = 120 }: { size?: number }) => {
         x: dx / 10,
         y: dy / 10,
       });
-      setDistance(Math.min(dist / 2, 200));
+      const newDist = Math.min(dist / 2, 200);
+      setDistance(newDist);
+      
+      // Remember max growth per tentacle
+      setMaxReached(prev => prev.map((max, i) => {
+        const angle = (i * Math.PI * 2) / 8;
+        const targetX = Math.cos(angle) * (80 + newDist) + (dx / 10) * 2;
+        const targetY = Math.sin(angle) * (80 + newDist) + (dy / 10) * 2;
+        const tentacleLength = Math.sqrt(targetX * targetX + targetY * targetY);
+        return Math.max(max, tentacleLength);
+      }));
     };
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
@@ -41,9 +52,10 @@ const AnimatedLogo = ({ size = 120 }: { size?: number }) => {
       ref={svgRef}
       width={size}
       height={size}
-      viewBox="0 0 400 400"
+      viewBox="-100 -100 600 600"
       xmlns="http://www.w3.org/2000/svg"
       className="transition-transform duration-100"
+      style={{ overflow: "visible" }}
     >
       <rect x="0" y="0" width="400" height="400" fill="transparent" />
 
