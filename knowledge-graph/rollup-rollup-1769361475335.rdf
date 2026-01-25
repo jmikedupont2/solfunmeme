@@ -1,0 +1,19 @@
+
+<div vocab="https://escaped-rdfa.org/" typeof="ContributionRollup">
+  <span property="rollupId">rollup-1769361475335</span>
+  <span property="contributions">3</span>
+  <span property="totalValue">165</span>
+  <span property="timestamp">1769361475335</span>
+  <div property="payments">
+    <div typeof="Payment">
+      <span property="recipient">contributor1</span>
+      <span property="amount">113</span>
+      <span property="proofs">contrib-1769361475334-c3v7aqgkz,contrib-1769361475334-roineucge</span>
+    </div>
+    <div typeof="Payment">
+      <span property="recipient">contributor2</span>
+      <span property="amount">52</span>
+      <span property="proofs">contrib-1769361475334-atdzx8joq</span>
+    </div>
+  </div>
+</div>
