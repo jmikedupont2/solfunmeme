@@ -11,28 +11,49 @@ const NewsLatterBox = () => {
         Subscribe to receive future updates
       </h3>
       <p className="mb-11 border-b border-body-color border-opacity-25 pb-11 text-base leading-relaxed text-body-color dark:border-white dark:border-opacity-25">
-        Join our community to stay updated on SOLFUNMEME developments, DAO governance, and platform updates.
+        Connect with SOLFUNMEME across all platforms.
       </p>
-      <div>
+      <div className="space-y-3">
         <a
           href="https://discord.gg/WASKdrBBzu"
           target="_blank"
           rel="noopener noreferrer"
-          className="mb-3 flex w-full cursor-pointer items-center justify-center rounded-sm bg-primary px-9 py-4 text-base font-medium text-white shadow-submit duration-300 hover:bg-primary/90 dark:shadow-submit-dark"
+          className="flex w-full items-center justify-center rounded-sm bg-primary px-6 py-3 text-base font-medium text-white shadow-submit duration-300 hover:bg-primary/90"
         >
-          💬 Join Discord
+          💬 Discord
         </a>
         <a
           href="https://t.me/introsp3ctor"
           target="_blank"
           rel="noopener noreferrer"
-          className="mb-5 flex w-full cursor-pointer items-center justify-center rounded-sm bg-black px-9 py-4 text-base font-medium text-white shadow-submit duration-300 hover:bg-black/90 dark:bg-white/10 dark:text-white dark:hover:bg-white/5"
+          className="flex w-full items-center justify-center rounded-sm bg-cyan px-6 py-3 text-base font-medium text-white shadow-submit duration-300 hover:bg-cyan/90"
         >
-          📱 Join Telegram
+          📱 Telegram
         </a>
-        <p className="text-center text-base leading-relaxed text-body-color dark:text-body-color-dark">
-          Connect with the community.
-        </p>
+        <a
+          href="https://x.com/introsp3ctor"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex w-full items-center justify-center rounded-sm bg-black px-6 py-3 text-base font-medium text-white shadow-submit duration-300 hover:bg-black/90 dark:bg-white/10 dark:hover:bg-white/5"
+        >
+          𝕏 Twitter
+        </a>
+        <a
+          href="https://github.com/jmikedupont2"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex w-full items-center justify-center rounded-sm bg-gray-dark px-6 py-3 text-base font-medium text-white shadow-submit duration-300 hover:bg-gray-dark/90"
+        >
+          🐙 GitHub
+        </a>
+        <a
+          href="https://www.linkedin.com/in/jamesmikedupont"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex w-full items-center justify-center rounded-sm bg-emerald px-6 py-3 text-base font-medium text-white shadow-submit duration-300 hover:bg-emerald/90"
+        >
+          💼 LinkedIn
+        </a>
       </div>
 
       <div>
