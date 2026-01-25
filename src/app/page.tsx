@@ -13,7 +13,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "SOLFUNMEME - Zero Ontology System | DAO-Driven AI Infrastructure",
-  description: "Every wallet is sacred. Recursive DAO bootstrap, zkgood proofs, and multi-chain resource deployment.",
+  description: "Every wallet is sovereign. Recursive DAO bootstrap, zero-knowledge proofs, and multi-chain resource deployment.",
   // other metadata
 };
 

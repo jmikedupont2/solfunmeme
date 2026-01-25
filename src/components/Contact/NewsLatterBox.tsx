@@ -11,19 +11,27 @@ const NewsLatterBox = () => {
         Subscribe to receive future updates
       </h3>
       <p className="mb-11 border-b border-body-color border-opacity-25 pb-11 text-base leading-relaxed text-body-color dark:border-white dark:border-opacity-25">
-        Join our mailing list to stay updated on SOLFUNMEME developments, DAO governance, and platform updates.
+        Join our community to stay updated on SOLFUNMEME developments, DAO governance, and platform updates.
       </p>
       <div>
         <a
-          href="https://groups.google.com/g/solfunmeme-announcements"
+          href="https://discord.gg/WASKdrBBzu"
           target="_blank"
           rel="noopener noreferrer"
-          className="mb-5 flex w-full cursor-pointer items-center justify-center rounded-sm bg-primary px-9 py-4 text-base font-medium text-white shadow-submit duration-300 hover:bg-primary/90 dark:shadow-submit-dark"
+          className="mb-3 flex w-full cursor-pointer items-center justify-center rounded-sm bg-primary px-9 py-4 text-base font-medium text-white shadow-submit duration-300 hover:bg-primary/90 dark:shadow-submit-dark"
         >
-          Join Mailing List
+          💬 Join Discord
+        </a>
+        <a
+          href="https://t.me/introsp3ctor"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mb-5 flex w-full cursor-pointer items-center justify-center rounded-sm bg-black px-9 py-4 text-base font-medium text-white shadow-submit duration-300 hover:bg-black/90 dark:bg-white/10 dark:text-white dark:hover:bg-white/5"
+        >
+          📱 Join Telegram
         </a>
         <p className="text-center text-base leading-relaxed text-body-color dark:text-body-color-dark">
-          No spam guaranteed. Announcements only.
+          Connect with the community.
         </p>
       </div>
 
