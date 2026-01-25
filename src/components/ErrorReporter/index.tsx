@@ -4,8 +4,12 @@ import { useEffect } from 'react';
 
 export function ErrorReporter() {
   useEffect(() => {
+    console.log('🟢 ErrorReporter initialized');
+    
     // Catch unhandled errors
     const handleError = (event: ErrorEvent) => {
+      console.log('🔴 Caught error, sending to server...');
+      
       const errorData = {
         message: event.message,
         stack: event.error?.stack,
@@ -20,7 +24,8 @@ export function ErrorReporter() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(errorData)
-      }).catch(console.error);
+      }).then(() => console.log('✅ Error sent to server'))
+        .catch(err => console.error('❌ Failed to send error:', err));
     };
     
     // Catch unhandled promise rejections
