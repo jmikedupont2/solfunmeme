@@ -12,7 +12,7 @@ const AboutSectionOne = () => {
 
   const Thrust = () => (
     <div>
-      <SectionTitle  title="Crafted for launching Private Personal, AI Startup, SaaS and Business AI Agents"
+      <SectionTitle  title="Crafted for launching Private Personal, AI SOLFUNMEME, SaaS and Business AI Agents"
       paragraph="The main ‘thrust’ is to focus on enabling $SOLFUNMEME holders how to launch soverign self hosted agents on own servers, to be self dependent and secure. We are agent, cloud, language and os agnostic in the zero ontology system philosophy"
       mb="44px"
     />
