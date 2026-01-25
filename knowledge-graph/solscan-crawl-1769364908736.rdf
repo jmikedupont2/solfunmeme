@@ -1,0 +1,13 @@
+
+<div vocab="https://escaped-rdfa.org/" typeof="SolscanCrawlWitness">
+  <span property="tokenCA">BwUTq7fS6sfUmHDwAiCQZ3asSiPEapW5zDrsbwtapump</span>
+  <span property="endpointsCrawled">5</span>
+  <span property="totalDataSize">105404</span>
+  <span property="jsonObjectsExtracted">NaN</span>
+  <span property="commitment">8zgUPFtVh2QpxRjcP5Qiq2gMPt+eEKX4m9b4Y+0MM00=</span>
+  <span property="zkTLSSignature">5Z1nWAFDQ+6riPDzDXIS8TOZtzrAbx0PPXf92pMagpw=</span>
+  <span property="timestamp">1769364908736</span>
+  <span property="attestation">zktls_solscan_data_signed</span>
+  <meta property="verified" content="true" />
+  <meta property="recursive" content="true" />
+</div>

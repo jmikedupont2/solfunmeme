@@ -86,3 +86,32 @@ begin
   return badge_data;
 end;
 $$ language plpgsql security definer;
+
+-- Ownership proofs table
+create table ownership_proofs (
+  id uuid default gen_random_uuid() primary key,
+  wallet text not null,
+  role text not null,
+  message text not null,
+  signature text not null,
+  commitment text not null unique,
+  verified_at timestamp with time zone not null,
+  created_at timestamp with time zone default timezone('utc'::text, now()) not null
+);
+
+-- RLS policies
+alter table ownership_proofs enable row level security;
+
+-- Public can read ownership proofs
+create policy "Public can view ownership proofs"
+  on ownership_proofs for select
+  using (true);
+
+-- Only authenticated users can insert
+create policy "Authenticated can create proofs"
+  on ownership_proofs for insert
+  with check (auth.role() = 'authenticated');
+
+-- Indexes
+create index idx_ownership_proofs_wallet on ownership_proofs(wallet);
+create index idx_ownership_proofs_commitment on ownership_proofs(commitment);

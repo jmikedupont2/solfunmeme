@@ -15,12 +15,18 @@ const menuData: Menu[] = [
   },
   {
     id: 3,
+    title: "P0WN",
+    path: "/p0wn",
+    newTab: false,
+  },
+  {
+    id: 4,
     title: "ZK Badges",
     path: "/zos",
     newTab: false,
   },
   {
-    id: 4,
+    id: 5,
     title: "Contact",
     path: "/contact",
     newTab: false,
