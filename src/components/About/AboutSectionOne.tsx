@@ -7,133 +7,7 @@ const checkIcon = (
   </svg>
 );
 
-
 const AboutSectionOne = () => {
-
-  const Thrust = () => (
-    <div>
-      <SectionTitle  title="Crafted for launching Private Personal, AI SOLFUNMEME, SaaS and Business AI Agents"
-      paragraph="The main ‘thrust’ is to focus on enabling $SOLFUNMEME holders how to launch soverign self hosted agents on own servers, to be self dependent and secure. We are agent, cloud, language and os agnostic in the zero ontology system philosophy"
-      mb="44px"
-    />
-      <div className="mb-12 max-w-[570px] lg:mb-0" data-wow-delay=".15s">
-        <div className="mx-[-12px] flex flex-wrap">                   
-          <List text="Ticket system for organizing " />
-          <List text="Free Tier Cloud Options" />
-          <List text="Own and control all your data and processing" />
-          <UncheckedList text="One Click Cloud Install" />
-        </div>
-	  </div>
-    </div>    
-  )
-
-  const FrameWorks = () => (
-    <div>
-      <SectionTitle
-        title="Multiple Agent Frameworks"
-        paragraph="We support multiple agents, and give them an audited, compliant
-	safe execution environment to work in and collaborate with human partners."
-        mb="44px"
-      />
-      <div className="w-full px-3 sm:w-1/2 lg:w-full xl:w-1/2">
-        <List text="ElizaOS" />	
-        <List text="Swarms" />
-        <List text="AutoGPT" />
-      </div>
-    </div>
-  )
-
-  const CloudNative = () => (
-    <div>
-      <SectionTitle
-        title="Provider Agnostic/Cloud Native"
-        paragraph="Using terraform we are cloud agnostic and flexible."
-        mb="44px"
-      />
-      <div className="w-full px-3 sm:w-1/2 lg:w-full xl:w-1/2">
-        <List text="Terraform" />
-	<UncheckedList text="AWS Lambda(planned)" />
-        <List text="AWS EC2(in progress)" />
-	<List text="Akash(in progress)" />
-	<List text="Docker" />
-	<List text="Github Actions" />
-	<List text="Github Spaces" />
-	<List text="Github Apps" />
-	<List text="Vercel Hosting" />
-	<List text="Hugging Space Spaces" />	
-	<UncheckedList text="K8S(planned)" />
-	<UncheckedList text="wasm(planned)" />
-	<UncheckedList text="zkvm(planned)" />
-      </div>
-    </div>
-  )
-
-  const Distributions = () => (
-    <div>
-      <SectionTitle
-        title="OS"
-        paragraph="We will support multiple OS versions."
-        mb="44px"
-      />
-      <div className="w-full px-3 sm:w-1/2 lg:w-full xl:w-1/2">
-	<UncheckedList text="Debian GNU/Linux" />
-        <List text="Ubuntu LTS" />
-	<List text="Android Termux(In progress)" />
-        <List text="NIX(in progress)" />
-	<List text="GUIX(in progress)" />
-        <UncheckedList text="WS2 Local testing" />
-	<UncheckedList text="AWS Linux (planned)" />
-	<UncheckedList text="Arch Linux (planned)" />
-	<UncheckedList text="Mac os m1 (planned)" />
-      </div>
-    </div>
-  )
-
-  const Languages = () => (
-    <div>
-      <SectionTitle
-        title="Languages"
-        paragraph="We will support agents and workflows in multiple languages."
-        mb="44px"
-      />
-      <div className="w-full px-3 sm:w-1/2 lg:w-full xl:w-1/2">
-        <List text="Typescript/NodeJS" />
-        <List text="Python" />
-	<List text="Rust" />
-	<List text="Ocaml" />
-	<List text="Plain old Bash scripts" />
-        <UncheckedList text="GOlang" />
-      </div>
-    </div>
-  )
-
-  const Goals = () => (
-    <div>
-      <SectionTitle
-        title="Goals."
-        paragraph="We have high expectations from ourselves and our partners."
-        mb="44px"
-      />
-      <div className="w-full px-3 sm:w-1/2 lg:w-full xl:w-1/2">
-        <List text="Zero Trust Architecture" />	
-        <List text="Infrastructure as Code" />
-        <UncheckedList text="Semantic disovery and integration via ZOS protocol(In progress)" />
-	<List text="Auditing and Obserability(OTEL)" />
-	<List text="Detailed Kernel Level Performance Monitoring and understanding with linux Perf " />
-        <List text="Free/Libre Open Source Software" />
-	<List text="Self Hosted/Cloud Hosted" />
-	<List text="LiteLLM (OpenLightLLM) open ai proxy server" />
-    	<List text="Ticket Driven Agent Workforce" />
-	<List text="AI Department in a box" />
-	<List text="Hybrid Multicloud Parameterization" />
-	
-	<UncheckedList text="ISO9000/GMP(Good Manufacturing Practices)" />
-	<UncheckedList text="Zero Knowledge Proofs" />
-    	<UncheckedList text="Zero Knowledge Machine Learning" />	      
-      </div>
-    </div>
-  )
-
   const List = ({ text }) => (
     <p className="mb-5 flex items-center text-lg font-medium text-body-color">
       <span className="mr-4 flex h-[30px] w-[30px] items-center justify-center rounded-md bg-primary bg-opacity-10 text-primary">
@@ -142,32 +16,53 @@ const AboutSectionOne = () => {
       {text}
     </p>
   );
-  
-  const UncheckedList = ({ text }) => (
-    <p className="mb-5 flex items-center text-lg font-medium text-body-color">
-      <span className="mr-4 flex h-[30px] w-[30px] items-center justify-center rounded-md bg-primary bg-opacity-10 text-primary">        
-      </span>
-      {text}
-    </p>
-  );
-  
+
   return (
     <section id="about" className="pt-16 md:pt-20 lg:pt-28">
       <div className="container">
         <div className="border-b border-body-color/[.15] pb-16 dark:border-white/[.15] md:pb-20 lg:pb-28">
           <div className="-mx-4 flex flex-wrap items-center">
             <div className="w-full px-4 lg:w-1/2">
-	      <Thrust/>
-	      <FrameWorks/>
-	      <CloudNative/>
-	      <Distributions/>
-	      <Languages/>
-            </div>
-          </div>
+              <SectionTitle
+                title="Pure Rust Core with ZK Plugin Architecture"
+                paragraph="Built on a high-performance Rust foundation with zero-knowledge proof plugins for maximum security and verifiability."
+                mb="44px"
+              />
+              <div className="mb-12 max-w-[570px] lg:mb-0">
+                <List text="Pure Rust core for performance and safety" />
+                <List text="ZK proof plugins (WASM/eBPF/native)" />
+                <List text="Verifiable computation" />
+                <List text="Multi-chain deployment" />
+              </div>
 
-          <div className="w-full px-4 lg:w-1/2">
-            <div className="relative mx-auto aspect-[25/24] max-w-[500px] lg:mr-0">
-              <Image
+              <SectionTitle
+                title="Deployment Targets"
+                paragraph="Deploy anywhere with our flexible runtime architecture."
+                mb="44px"
+              />
+              <div className="mb-12 max-w-[570px] lg:mb-0">
+                <List text="WASM (browser + edge)" />
+                <List text="eBPF (kernel-level)" />
+                <List text="Native Rust (bare metal)" />
+                <List text="Cloud agnostic" />
+              </div>
+
+              <SectionTitle
+                title="Zero Ontology System"
+                paragraph="Agent, cloud, language, and OS agnostic philosophy."
+                mb="44px"
+              />
+              <div className="mb-12 max-w-[570px] lg:mb-0">
+                <List text="Sovereign self-hosted agents" />
+                <List text="Own your data and processing" />
+                <List text="DAO governance" />
+                <List text="Wallet-centric design" />
+              </div>
+            </div>
+
+            <div className="w-full px-4 lg:w-1/2">
+              <div className="relative mx-auto aspect-[25/24] max-w-[500px] lg:mr-0">
+                <Image
                   src="/images/about/about-image.svg"
                   alt="about-image"
                   fill
@@ -182,8 +77,8 @@ const AboutSectionOne = () => {
               </div>
             </div>
           </div>
+        </div>
       </div>
-    
     </section>
   );
 };
