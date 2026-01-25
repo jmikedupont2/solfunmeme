@@ -3,9 +3,10 @@
 import { useState } from 'react';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
+import { WalletContextProvider } from '@/components/WalletProvider';
 import bs58 from 'bs58';
 
-export default function P0wnPage() {
+function P0wnContent() {
   const { publicKey, signMessage } = useWallet();
   const [status, setStatus] = useState('');
   const [badge, setBadge] = useState<any>(null);
@@ -112,5 +113,13 @@ export default function P0wnPage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function P0wnPage() {
+  return (
+    <WalletContextProvider>
+      <P0wnContent />
+    </WalletContextProvider>
   );
 }
