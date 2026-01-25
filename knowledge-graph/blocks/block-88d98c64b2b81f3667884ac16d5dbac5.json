@@ -1,0 +1,58 @@
+{
+  "id": "88d98c64b2b81f3667884ac16d5dbac5",
+  "type": "api_call",
+  "metadata": {
+    "url": "https://api.mainnet-beta.solana.com/getAccountInfo",
+    "method": "POST",
+    "description": "Fetch token account info",
+    "timestamp": 1769365013925,
+    "duration": 21
+  },
+  "request": {
+    "url": "https://api.mainnet-beta.solana.com/getAccountInfo",
+    "method": "POST",
+    "timestamp": 1769365013925
+  },
+  "response": {
+    "status": 200,
+    "data": {
+      "jsonrpc": "2.0",
+      "result": {
+        "context": {
+          "apiVersion": "3.0.14",
+          "slot": 395887236
+        },
+        "value": {
+          "data": {
+            "parsed": {
+              "info": {
+                "decimals": 6,
+                "freezeAuthority": null,
+                "isInitialized": true,
+                "mintAuthority": null,
+                "supply": "999799671339726"
+              },
+              "type": "mint"
+            },
+            "program": "spl-token",
+            "space": 82
+          },
+          "executable": false,
+          "lamports": 14985088825,
+          "owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "rentEpoch": 18446744073709552000,
+          "space": 82
+        }
+      },
+      "id": 2
+    },
+    "size": 417,
+    "timestamp": 1769365013946
+  },
+  "witness": {
+    "timestamp": 1769365013946,
+    "observer": "wasm-observer",
+    "attested": true
+  },
+  "commitment": "abea83be2dc32d556fbdb6ea665d1798d44b0d5b2582fcb35bdd0a22d707d7fc"
+}

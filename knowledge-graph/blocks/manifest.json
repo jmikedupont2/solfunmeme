@@ -1,0 +1,18 @@
+{
+  "blocks": [
+    {
+      "id": "d27e6e1d640eda25c82f408e1f9f5517",
+      "commitment": "edf1d320df40229374962a85ec50373167306b72f1981bc1faa75b4f4ce98692",
+      "timestamp": 1769365013836,
+      "size": 778
+    },
+    {
+      "id": "88d98c64b2b81f3667884ac16d5dbac5",
+      "commitment": "abea83be2dc32d556fbdb6ea665d1798d44b0d5b2582fcb35bdd0a22d707d7fc",
+      "timestamp": 1769365013925,
+      "size": 990
+    }
+  ],
+  "totalBlocks": 2,
+  "timestamp": 1769365013950
+}

@@ -1,0 +1,12 @@
+
+<div vocab="https://escaped-rdfa.org/" typeof="APIBlock">
+  <span property="blockId">88d98c64b2b81f3667884ac16d5dbac5</span>
+  <span property="type">api_call</span>
+  <span property="url">https://api.mainnet-beta.solana.com/getAccountInfo</span>
+  <span property="method">POST</span>
+  <span property="status">200</span>
+  <span property="commitment">abea83be2dc32d556fbdb6ea665d1798d44b0d5b2582fcb35bdd0a22d707d7fc</span>
+  <span property="timestamp">1769365013925</span>
+  <meta property="witnessed" content="true" />
+  <meta property="cached" content="true" />
+</div>

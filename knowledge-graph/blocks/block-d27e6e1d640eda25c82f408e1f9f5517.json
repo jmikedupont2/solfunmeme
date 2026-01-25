@@ -1,0 +1,43 @@
+{
+  "id": "d27e6e1d640eda25c82f408e1f9f5517",
+  "type": "api_call",
+  "metadata": {
+    "url": "https://api.mainnet-beta.solana.com/getTokenSupply",
+    "method": "POST",
+    "description": "Fetch SOLFUNMEME token supply",
+    "timestamp": 1769365013836,
+    "duration": 89
+  },
+  "request": {
+    "url": "https://api.mainnet-beta.solana.com/getTokenSupply",
+    "method": "POST",
+    "timestamp": 1769365013836
+  },
+  "response": {
+    "status": 200,
+    "data": {
+      "jsonrpc": "2.0",
+      "result": {
+        "context": {
+          "apiVersion": "3.0.13",
+          "slot": 395887236
+        },
+        "value": {
+          "amount": "999799671339726",
+          "decimals": 6,
+          "uiAmount": 999799671.339726,
+          "uiAmountString": "999799671.339726"
+        }
+      },
+      "id": 1
+    },
+    "size": 200,
+    "timestamp": 1769365013925
+  },
+  "witness": {
+    "timestamp": 1769365013925,
+    "observer": "wasm-observer",
+    "attested": true
+  },
+  "commitment": "edf1d320df40229374962a85ec50373167306b72f1981bc1faa75b4f4ce98692"
+}
