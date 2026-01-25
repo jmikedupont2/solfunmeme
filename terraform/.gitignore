@@ -1,4 +1,6 @@
 terraform.tfvars
+terraform.tfvars.example
+oauth-credentials.txt
 *.tfstate
 *.tfstate.*
 .terraform/

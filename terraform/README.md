@@ -1,5 +1,58 @@
 # Supabase OAuth Terraform Configuration
 
+# Supabase OAuth Terraform Configuration
+
+## Two-Step Setup
+
+### Step 1: Create OAuth Applications (oauth-providers.tf)
+
+This creates the OAuth apps on Google and GitHub automatically.
+
+1. **Set up credentials**:
+   ```bash
+   cd terraform
+   cp terraform.tfvars.example terraform.tfvars
+   ```
+
+2. **Edit terraform.tfvars**:
+   ```hcl
+   # For creating OAuth apps
+   google_project_id = "your-gcp-project"
+   github_token      = "ghp_xxxxx"  # From https://github.com/settings/tokens
+   
+   # For Supabase (from step 2)
+   supabase_access_token = "sbp_xxxxx"
+   ```
+
+3. **Create OAuth apps**:
+   ```bash
+   terraform init
+   terraform apply
+   ```
+
+4. **Get credentials**:
+   ```bash
+   # Credentials saved to oauth-credentials.txt
+   cat oauth-credentials.txt
+   ```
+
+### Step 2: Configure Supabase (supabase-oauth.tf)
+
+This configures Supabase with the OAuth credentials.
+
+1. **Add credentials to terraform.tfvars**:
+   ```bash
+   # Copy from oauth-credentials.txt
+   # Plus add manual ones (Discord, Twitter, etc.)
+   ```
+
+2. **Apply Supabase config**:
+   ```bash
+   terraform apply
+   ```
+
+Done! All OAuth providers configured.
+
 ## Setup
 
 1. **Get Supabase Access Token**:
