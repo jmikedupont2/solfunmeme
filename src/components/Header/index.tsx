@@ -160,12 +160,12 @@ const Header = () => {
               </div>
               <div className="flex items-center justify-end pr-16 lg:pr-0">
                 <a
-                  href="https://groups.google.com/g/solfunmeme-announcements"
+                  href="https://discord.gg/WASKdrBBzu"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="ease-in-up shadow-btn hover:shadow-btn-hover hidden rounded-sm bg-primary px-8 py-3 text-base font-medium text-white transition duration-300 hover:bg-opacity-90 md:block md:px-9 lg:px-6 xl:px-9"
                 >
-                  Join Mailing List
+                  💬 Join Discord
                 </a>
                 <div>
                   <ThemeToggler />
