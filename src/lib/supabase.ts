@@ -67,3 +67,34 @@ export async function getUserBadges(userId: string) {
   if (error) throw error;
   return data;
 }
+
+export async function saveTokenWitness(witness: {
+  token_ca: string;
+  supply: number;
+  holders: number;
+  commitment: string;
+  shards: any[];
+  rdfa: string;
+}) {
+  const { data, error } = await supabase
+    .from('token_witnesses')
+    .insert([witness])
+    .select()
+    .single();
+  
+  if (error) throw error;
+  return data;
+}
+
+export async function getLatestTokenWitness(tokenCA: string) {
+  const { data, error } = await supabase
+    .from('token_witnesses')
+    .select('*')
+    .eq('token_ca', tokenCA)
+    .order('witnessed_at', { ascending: false })
+    .limit(1)
+    .single();
+  
+  if (error) throw error;
+  return data;
+}

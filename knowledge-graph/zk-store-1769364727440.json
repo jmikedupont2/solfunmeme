@@ -1,0 +1,15 @@
+{
+  "ca": "BwUTq7fS6sfUmHDwAiCQZ3asSiPEapW5zDrsbwtapump",
+  "supply": 999799671.339726,
+  "holders": 0,
+  "commitment": "TTIt4KNRWRRIzOk/qbzL1UXjDOgw/zntYXXkuFb08dE=",
+  "shards": [
+    "eyJnZW5lc2lzIjp7InB1YmxpY19rZXkiOiJFK1R4YXV4c1BOVlRubk9NQVE1ckdqVFZOd3RaWUxkTVA1YWtqTHlhQk9jPSIsImVuY3J5cHRlZF9wcml2YXRlX2tleSI6IkdXWjVKd09TWTlYSTJxRVJxTmtzNFRmY1pDYTArWGxRTlU5NG5NdXpoM1k9IiwiYmlydGhfaGFzaCI6ImZ4NU1hbUwvTC9xRTlkQlVrYjF1dEZ5K1ZWUEF2d0I3WXhrbzNiM0V4VUU9IiwidGltZXN0YW1wIjoxNzY5MzY0NzI3MTM5LjB9LCJldmVudHMiOltdLCJkYXRhX2lucHV0cyI6W3siaW5wdXRfdHlwZSI6InVybCIsImtleSI=",
+    "OiJ1cmwiLCJ2YWx1ZSI6Imh0dHBzOi8vc29sc2Nhbi5pby90b2tlbi9Cd1VUcTdmUzZzZlVtSER3QWlDUVozYXNTaVBFYXBXNXpEcnNid3RhcHVtcCIsImhhc2giOiJBbTBxbHUwS0thTk9sZ3UvOWtWUHBpdUtJSWZUcjFUNHhYN0NldUw1QlhjPSJ9LHsiaW5wdXRfdHlwZSI6InN0b3JhZ2UiLCJrZXkiOiJ0b2tlbl9jYSIsInZhbHVlIjoiQndVVHE3ZlM2c2ZVbUhEd0FpQ1FaM2FzU2lQRWFwVzV6RHJzYnd0YXB1bXAiLCJoYXNoIjoiWlN2bXpXeWY5a0J3MVdmS2I2aEZLeTAwY3BIaVdwQXo4S1JHQmg=",
+    "OEkwZjg9In0seyJpbnB1dF90eXBlIjoic3RvcmFnZSIsImtleSI6InRva2VuX3N1cHBseSIsInZhbHVlIjoiOTk5Nzk5NjcxLjMzOTcyNiIsImhhc2giOiJpblRKa3ZMRFl5dXZXMzJONFV2Yk1NS0U5Q3ZhK2xmczRNMlN4Sm95d09FPSJ9LHsiaW5wdXRfdHlwZSI6InN0b3JhZ2UiLCJrZXkiOiJ0b3BfaG9sZGVyc19jb3VudCIsInZhbHVlIjoiMCIsImhhc2giOiJYK3pyWnYvSWJ6alpVbmhzYldsc2VjTGJ3am5kVHBHMFp5blhPaWY3VitrPSJ9LHsiaW5wdXRfdHlwZSI6InN0b3JhZ2UiLCJrZXkiOiI=",
+    "ZmV0Y2hfdGltZXN0YW1wIiwidmFsdWUiOiIxNzY5MzY0NzI3NDM5IiwiaGFzaCI6IjU4c1J2d09BZ0xVU1cwaGxYSll2L3FtU1B4Q3lGcFdoSms2SlEwK1B2RlU9In1dLCJhdHRlc3RhdGlvbnMiOlt7InBsdWdpbiI6InNlbGYiLCJjbGFpbSI6ImdlbmVzaXNfd2l0bmVzc2VkIiwicHJvb2ZfaGFzaCI6Im51ZERuYXBSN2R4ckRnTUdmL1B6Q1VYVFhkZzJXdUNjTzNqSVN3cUhnRVk9In0seyJwbHVnaW4iOiJzb2xhbmEiLCJjbGFpbSI6InRva2VuX2RhdGFfd2l0bmVzc2VkIiwicHJvb2ZfaGFzaCI6InE=",
+    "NDR4RVh0TVl5azdjVTZneWRtUllsakJDRjZCaitKSmF4eXBXMjRuZWRnPSJ9XSwiZXhlY3V0aW9uX2NvbnRleHQiOlt7InRyYWNlX3R5cGUiOiJkYXRhLWNvbGxlY3Rpb24iLCJkYXRhIjoiRmV0Y2hlZCBhbmQgd2l0bmVzc2VkIFNvbGFuYSBDQSBkYXRhIiwiaGFzaCI6InZPMnIrcHdBWEJOKzZoSVRyWVgyUkYyYjROck9xNXFUenpFbVExWVRkbFk9Iiwic2VsZl92ZXJpZmllZCI6ZmFsc2V9XSwidGltZXN0YW1wIjoxNzY5MzY0NzI3MTM4LjAsInNlc3Npb25faWQiOiIxNzY5MzY0NzI3MTM3In0="
+  ],
+  "rdfa": "\n<div vocab=\"https://escaped-rdfa.org/\" typeof=\"TokenDataWitness\">\n  <span property=\"tokenCA\">BwUTq7fS6sfUmHDwAiCQZ3asSiPEapW5zDrsbwtapump</span>\n  <span property=\"tokenSupply\">999799671.339726</span>\n  <span property=\"topHolders\">0</span>\n  <span property=\"commitment\">TTIt4KNRWRRIzOk/qbzL1UXjDOgw/zntYXXkuFb08dE=</span>\n  <span property=\"timestamp\">1769364727439</span>\n  <span property=\"attestation\">token_data_witnessed</span>\n  <meta property=\"verified\" content=\"true\" />\n</div>\n",
+  "timestamp": 1769364727440
+}

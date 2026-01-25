@@ -1,0 +1,10 @@
+
+<div vocab="https://escaped-rdfa.org/" typeof="TokenDataWitness">
+  <span property="tokenCA">BwUTq7fS6sfUmHDwAiCQZ3asSiPEapW5zDrsbwtapump</span>
+  <span property="tokenSupply">999799671.339726</span>
+  <span property="topHolders">0</span>
+  <span property="commitment">TTIt4KNRWRRIzOk/qbzL1UXjDOgw/zntYXXkuFb08dE=</span>
+  <span property="timestamp">1769364727439</span>
+  <span property="attestation">token_data_witnessed</span>
+  <meta property="verified" content="true" />
+</div>

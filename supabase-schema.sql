@@ -1,3 +1,28 @@
+-- Token data witnesses
+create table token_witnesses (
+  id uuid default gen_random_uuid() primary key,
+  token_ca text not null,
+  supply numeric,
+  holders integer,
+  commitment text not null unique,
+  shards jsonb not null,
+  rdfa text not null,
+  witnessed_at timestamp with time zone default timezone('utc'::text, now()) not null
+);
+
+-- RLS policies
+alter table token_witnesses enable row level security;
+
+-- Public can read token data
+create policy "Public can view token witnesses"
+  on token_witnesses for select
+  using (true);
+
+-- Only authenticated users can insert
+create policy "Authenticated can create witnesses"
+  on token_witnesses for insert
+  with check (auth.role() = 'authenticated');
+
 -- ZK Badge storage with selective disclosure
 create table zk_badges (
   id uuid default gen_random_uuid() primary key,
