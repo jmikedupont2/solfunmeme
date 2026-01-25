@@ -1,10 +1,15 @@
+import { getBadge } from '@/lib/supabase';
 import { notFound } from 'next/navigation';
 
-export default function BadgePage({ params }: { params: { commitment: string } }) {
+export default async function BadgePage({ params }: { params: { commitment: string } }) {
   const { commitment } = params;
   
-  // In production, fetch badge data from knowledge graph
-  // For now, display the commitment
+  // Fetch badge with selective disclosure
+  const badge = await getBadge(commitment);
+  
+  if (!badge) {
+    notFound();
+  }
   
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 to-blue-900 flex items-center justify-center p-8">
@@ -35,6 +40,28 @@ export default function BadgePage({ params }: { params: { commitment: string } }
               </p>
             </div>
 
+            {badge.wallet && (
+              <div className="border-t pt-4">
+                <span className="text-sm font-bold text-gray-600 dark:text-gray-400">
+                  Wallet:
+                </span>
+                <p property="wallet" className="font-mono text-xs mt-1">
+                  {badge.wallet}
+                </p>
+              </div>
+            )}
+
+            {badge.holdings && (
+              <div className="border-t pt-4">
+                <span className="text-sm font-bold text-gray-600 dark:text-gray-400">
+                  Holdings:
+                </span>
+                <p property="holdings" className="text-2xl font-bold mt-1">
+                  {badge.holdings.toLocaleString()} SOLFUNMEME
+                </p>
+              </div>
+            )}
+
             <div className="border-t pt-4">
               <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
                 This badge proves:
@@ -43,14 +70,15 @@ export default function BadgePage({ params }: { params: { commitment: string } }
                 <li>✅ Wallet ownership verified</li>
                 <li>✅ Holdings cryptographically committed</li>
                 <li>✅ Zero-knowledge proof generated</li>
-                <li>✅ Shareable without revealing private data</li>
+                <li>✅ {!badge.wallet && !badge.holdings ? 'Fully anonymous' : 'Selectively disclosed'}</li>
               </ul>
             </div>
 
             <div className="border-t pt-4 text-xs text-gray-500">
               <p><strong>Protocol:</strong> zkTLS witness sharding</p>
-              <p><strong>Storage:</strong> RDFa knowledge graph</p>
+              <p><strong>Storage:</strong> RDFa knowledge graph + Supabase</p>
               <p><strong>Chain:</strong> P2P Solana sidechain</p>
+              <p><strong>Created:</strong> {new Date(badge.created_at).toLocaleDateString()}</p>
             </div>
           </div>
 

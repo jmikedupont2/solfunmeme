@@ -75,6 +75,19 @@ export default function ZKBadgeGenerator() {
       const badgeJson = observer.generate_badge(5);
       const badgeData = JSON.parse(badgeJson);
       
+      // Save to Supabase with selective disclosure
+      const { saveBadge } = await import('@/lib/supabase');
+      const savedBadge = await saveBadge({
+        commitment: badgeData.commitment,
+        wallet_address: wallet,
+        holdings: holdings,
+        shards: badgeData.shards,
+        rdfa: badgeData.rdfa,
+        reveal_wallet: false,  // Default: hidden
+        reveal_holdings: false, // Default: hidden
+        reveal_identity: false  // Default: hidden
+      });
+      
       // Create shareable URL
       const badgeUrl = `https://solfunmeme.com/zos/badge/${badgeData.commitment}`;
       
@@ -82,7 +95,8 @@ export default function ZKBadgeGenerator() {
         ...badgeData,
         url: badgeUrl,
         wallet: wallet.substring(0, 8) + '...',
-        holdings
+        holdings,
+        id: savedBadge.id
       });
     } catch (err) {
       console.error('Badge generation failed:', err);
