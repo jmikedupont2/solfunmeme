@@ -9,16 +9,20 @@ export default function ZKBadgeGenerator() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    // Load WASM observer
+    // Load WASM observer (client-side only)
     const loadWASM = async () => {
+      if (typeof window === 'undefined') return;
+      
       try {
-        const wasm = await import('@/wasm-observer/pkg/wasm_observer.js');
+        // Dynamic import for client-side only
+        const wasm = await import('../../../wasm-observer/pkg/wasm_observer.js');
         await wasm.default();
         const obs = new wasm.Observer();
         obs.genesis();
         setObserver(obs);
       } catch (err) {
         console.error('WASM load failed:', err);
+        // Fallback: continue without WASM
       }
     };
     loadWASM();
@@ -28,7 +32,7 @@ export default function ZKBadgeGenerator() {
     setLoading(true);
     try {
       // Connect Phantom/Solflare
-      const { solana } = window;
+      const solana = (window as any).solana;
       if (!solana) {
         alert('Please install Phantom wallet');
         return;
