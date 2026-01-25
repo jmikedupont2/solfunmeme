@@ -35,7 +35,7 @@ const Footer = () => {
                   </p>
                   <div className="flex flex-wrap gap-3">
                     <a
-                      href="https://solscan.io/token/YOUR_TOKEN_ADDRESS"
+                      href="https://solscan.io/token/BwUTq7fS6sfUmHDwAiCQZ3asSiPEapW5zDrsbwtapump"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-sm text-body-color hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
@@ -43,7 +43,7 @@ const Footer = () => {
                       📊 Solscan
                     </a>
                     <a
-                      href="https://raydium.io/swap/?inputCurrency=sol&outputCurrency=YOUR_TOKEN_ADDRESS"
+                      href="https://raydium.io/swap/?inputCurrency=sol&outputCurrency=BwUTq7fS6sfUmHDwAiCQZ3asSiPEapW5zDrsbwtapump"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-sm text-body-color hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
@@ -51,7 +51,7 @@ const Footer = () => {
                       💱 Raydium
                     </a>
                     <a
-                      href="https://jup.ag/swap/SOL-YOUR_TOKEN_ADDRESS"
+                      href="https://jup.ag/swap/SOL-BwUTq7fS6sfUmHDwAiCQZ3asSiPEapW5zDrsbwtapump"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-sm text-body-color hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
@@ -59,7 +59,7 @@ const Footer = () => {
                       🪐 Jupiter
                     </a>
                     <a
-                      href="https://dexscreener.com/solana/YOUR_TOKEN_ADDRESS"
+                      href="https://dexscreener.com/solana/BwUTq7fS6sfUmHDwAiCQZ3asSiPEapW5zDrsbwtapump"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-sm text-body-color hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
