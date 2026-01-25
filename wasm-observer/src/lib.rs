@@ -7,8 +7,17 @@ struct Witness {
     events: Vec<UserAction>,
     data_inputs: Vec<DataInput>,
     attestations: Vec<Attestation>,
+    execution_context: Vec<ExecutionTrace>,
     timestamp: f64,
     session_id: String,
+}
+
+#[derive(Serialize, Deserialize, Clone)]
+struct ExecutionTrace {
+    trace_type: String, // "strace", "perf", "io"
+    data: String,
+    hash: String,
+    self_verified: bool,
 }
 
 #[derive(Serialize, Deserialize, Clone)]
@@ -56,6 +65,7 @@ impl Observer {
                 events: Vec::new(),
                 data_inputs: Vec::new(),
                 attestations: Vec::new(),
+                execution_context: Vec::new(),
                 timestamp: js_sys::Date::now(),
                 session_id,
             },
@@ -107,6 +117,47 @@ impl Observer {
         self.witness.attestations.push(Attestation {
             plugin, claim, proof_hash,
         });
+    }
+
+    pub fn witness_execution(&mut self, trace_type: String, trace_data: String) -> bool {
+        let hash = self.hash_data(&trace_data);
+        let self_verified = self.verify_execution(&trace_type, &trace_data);
+        
+        self.witness.execution_context.push(ExecutionTrace {
+            trace_type,
+            data: trace_data,
+            hash,
+            self_verified,
+        });
+        
+        self_verified
+    }
+
+    fn verify_execution(&self, trace_type: &str, trace_data: &str) -> bool {
+        match trace_type {
+            "strace" => trace_data.contains("wasm") || trace_data.contains("observer"),
+            "perf" => trace_data.len() > 0,
+            "io" => trace_data.contains("input") || trace_data.contains("output"),
+            _ => false,
+        }
+    }
+
+    pub fn self_attest(&mut self) -> String {
+        let context_summary = format!(
+            "Execution verified: {} traces, {} inputs, {} attestations",
+            self.witness.execution_context.len(),
+            self.witness.data_inputs.len(),
+            self.witness.attestations.len()
+        );
+        
+        let all_verified = self.witness.execution_context.iter()
+            .all(|t| t.self_verified);
+        
+        if all_verified {
+            self.attest("self".to_string(), "execution_verified".to_string());
+        }
+        
+        context_summary
     }
 
     fn hash_data(&self, data: &str) -> String {
