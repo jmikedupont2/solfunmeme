@@ -1,5 +1,4 @@
 use wasm_bindgen::prelude::*;
-use web_sys::console;
 use serde::{Serialize, Deserialize};
 use sha2::{Sha256, Digest};
 
@@ -7,6 +6,7 @@ use sha2::{Sha256, Digest};
 struct Witness {
     events: Vec<UserAction>,
     data_inputs: Vec<DataInput>,
+    attestations: Vec<Attestation>,
     timestamp: f64,
     session_id: String,
 }
@@ -21,18 +21,24 @@ struct UserAction {
 
 #[derive(Serialize, Deserialize, Clone)]
 struct DataInput {
-    input_type: String, // "url", "storage", "file"
+    input_type: String,
     key: String,
     value: String,
     hash: String,
 }
 
+#[derive(Serialize, Deserialize, Clone)]
+struct Attestation {
+    plugin: String,
+    claim: String,
+    proof_hash: String,
+}
+
 #[derive(Serialize, Deserialize)]
-struct WitnessShard {
-    shard_id: u8,
-    total_shards: u8,
-    data: String,
+struct ZKBadge {
     commitment: String,
+    shards: Vec<String>,
+    rdfa: String,
 }
 
 #[wasm_bindgen]
@@ -49,6 +55,7 @@ impl Observer {
             witness: Witness {
                 events: Vec::new(),
                 data_inputs: Vec::new(),
+                attestations: Vec::new(),
                 timestamp: js_sys::Date::now(),
                 session_id,
             },
@@ -57,17 +64,13 @@ impl Observer {
 
     pub fn observe_move(&mut self, x: i32, y: i32) {
         self.witness.events.push(UserAction {
-            x, y,
-            t: js_sys::Date::now(),
-            action: 0,
+            x, y, t: js_sys::Date::now(), action: 0,
         });
     }
 
     pub fn observe_click(&mut self, x: i32, y: i32) {
         self.witness.events.push(UserAction {
-            x, y,
-            t: js_sys::Date::now(),
-            action: 1,
+            x, y, t: js_sys::Date::now(), action: 1,
         });
     }
 
@@ -85,9 +88,7 @@ impl Observer {
         let hash = self.hash_data(&value);
         self.witness.data_inputs.push(DataInput {
             input_type: "storage".to_string(),
-            key,
-            value,
-            hash,
+            key, value, hash,
         });
     }
 
@@ -98,6 +99,13 @@ impl Observer {
             key: filename,
             value: content,
             hash,
+        });
+    }
+
+    pub fn attest(&mut self, plugin: String, claim: String) {
+        let proof_hash = self.hash_data(&format!("{}:{}", plugin, claim));
+        self.witness.attestations.push(Attestation {
+            plugin, claim, proof_hash,
         });
     }
 
@@ -112,25 +120,32 @@ impl Observer {
         self.hash_data(&data)
     }
 
-    pub fn create_shards(&self, n: u8) -> String {
+    pub fn generate_badge(&self, n_shards: u8) -> String {
         let data = serde_json::to_string(&self.witness).unwrap_or_default();
         let commitment = self.certify();
-        let chunk_size = (data.len() + n as usize - 1) / n as usize;
+        let chunk_size = (data.len() + n_shards as usize - 1) / n_shards as usize;
         
-        let shards: Vec<WitnessShard> = (0..n)
+        let shards: Vec<String> = (0..n_shards)
             .map(|i| {
                 let start = (i as usize) * chunk_size;
                 let end = ((i + 1) as usize * chunk_size).min(data.len());
-                WitnessShard {
-                    shard_id: i,
-                    total_shards: n,
-                    data: data[start..end].to_string(),
-                    commitment: commitment.clone(),
-                }
+                base64::encode(&data[start..end])
             })
             .collect();
-        
-        serde_json::to_string(&shards).unwrap_or_default()
+
+        let rdfa = format!(
+            r#"<div vocab="https://escaped-rdfa.org/" typeof="ZKBadge">
+  <span property="commitment">{}</span>
+  <span property="shards">{}</span>
+  <span property="session">{}</span>
+</div>"#,
+            commitment,
+            shards.join(","),
+            self.witness.session_id
+        );
+
+        let badge = ZKBadge { commitment, shards, rdfa };
+        serde_json::to_string(&badge).unwrap_or_default()
     }
 
     pub fn export_witness(&self) -> String {
