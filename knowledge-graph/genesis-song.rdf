@@ -1,0 +1,13 @@
+
+<div vocab="https://escaped-rdfa.org/" typeof="AutopoieticGenesis">
+  <span property="subject">Genesis Song</span>
+  <span property="predicate">creates</span>
+  <span property="object">Self-Recreating System</span>
+  <span property="godelNumber">7df15c2882178afd381383bf6c32eb459700965e425439d1d92b8f6fca23c816</span>
+  <span property="commitment">sUEnlE3OONKtYdH66xh15sdQt1vAr6tjtcwdIUfL3OU=</span>
+  <span property="birthHash">lp7InfAaug4dGV8ftTPvSd4dt++oLiOAWrOS8Ft2BGg=</span>
+  <span property="verses">6</span>
+  <span property="attestation">genesis_song_witnessed</span>
+  <meta property="autopoietic" content="true" />
+  <meta property="selfReferential" content="true" />
+</div>

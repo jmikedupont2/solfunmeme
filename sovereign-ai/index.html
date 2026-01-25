@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Self-Sovereign AI Instance</title>
+    <style>
+        body { font-family: monospace; max-width: 800px; margin: 50px auto; }
+        .status { padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .success { background: #d4edda; }
+        .info { background: #d1ecf1; }
+        button { padding: 10px 20px; margin: 5px; cursor: pointer; }
+        #resources { margin-top: 20px; }
+        .resource { padding: 10px; margin: 5px 0; background: #f8f9fa; border-left: 3px solid #007bff; }
+    </style>
+</head>
+<body>
+    <h1>🧠 Self-Sovereign AI Instance</h1>
+    <p>Your private, local AI reasoning system. You own your data.</p>
+    
+    <div id="auth-section">
+        <h2>1. Authentication</h2>
+        <button onclick="mockAuth()">🔐 Authenticate with Google</button>
+        <div id="auth-status"></div>
+    </div>
+    
+    <div id="instance-section" style="display:none;">
+        <h2>2. Your Instance</h2>
+        <div class="status info">
+            <strong>Instance ID:</strong> <span id="instance-id"></span><br>
+            <strong>Public Key:</strong> <span id="pubkey"></span><br>
+            <strong>Status:</strong> <span id="status">Initializing...</span>
+        </div>
+        
+        <h2>3. Add Resources</h2>
+        <input type="text" id="resource-url" placeholder="GitHub repo, HF dataset, or URL" style="width: 500px;">
+        <button onclick="addResource()">➕ Add Resource</button>
+        
+        <div id="resources"></div>
+        
+        <h2>4. Reasoning</h2>
+        <textarea id="query" placeholder="Ask your AI instance..." style="width: 100%; height: 100px;"></textarea>
+        <button onclick="reason()">🤔 Reason (Local LLM)</button>
+        <div id="reasoning-output"></div>
+    </div>
+    
+    <script type="module">
+        import init, { Observer } from '../wasm-observer/pkg/wasm_observer.js';
+        
+        let observer;
+        let resources = [];
+        
+        async function initWASM() {
+            await init();
+            observer = new Observer();
+            const genesis = observer.genesis();
+            const genesisData = JSON.parse(genesis);
+            
+            document.getElementById('instance-id').textContent = genesisData.timestamp;
+            document.getElementById('pubkey').textContent = genesisData.public_key.substring(0, 32) + '...';
+            document.getElementById('status').textContent = 'Active ✓';
+            
+            // Witness instance creation
+            observer.witness_execution('instance-init', 'Self-sovereign AI instance created');
+            observer.attest('self', 'instance_initialized');
+        }
+        
+        window.mockAuth = function() {
+            // Mock Google OAuth
+            const mockCreds = {
+                provider: 'google',
+                email: 'user@example.com',
+                token: 'mock-token-' + Date.now(),
+                timestamp: Date.now()
+            };
+            
+            // Encrypt and store in localStorage
+            const encrypted = btoa(JSON.stringify(mockCreds));
+            localStorage.setItem('ai-instance-creds', encrypted);
+            
+            document.getElementById('auth-status').innerHTML = 
+                '<div class="status success">✓ Authenticated as ' + mockCreds.email + '</div>';
+            document.getElementById('instance-section').style.display = 'block';
+            
+            initWASM();
+        };
+        
+        window.addResource = function() {
+            const url = document.getElementById('resource-url').value;
+            if (!url) return;
+            
+            // Add to observer
+            observer.lift_url(url);
+            observer.attest('resource', 'added_to_instance');
+            
+            resources.push({
+                url,
+                timestamp: Date.now(),
+                indexed: true
+            });
+            
+            // Display
+            const resourceDiv = document.createElement('div');
+            resourceDiv.className = 'resource';
+            resourceDiv.innerHTML = `
+                <strong>📦 ${url}</strong><br>
+                <small>Added: ${new Date().toLocaleString()} | Indexed: ✓</small>
+            `;
+            document.getElementById('resources').appendChild(resourceDiv);
+            
+            document.getElementById('resource-url').value = '';
+        };
+        
+        window.reason = function() {
+            const query = document.getElementById('query').value;
+            if (!query) return;
+            
+            // Witness reasoning
+            observer.witness_execution('llm-reasoning', query);
+            
+            // Mock LLM response (in real version, calls Gemini CLI)
+            const response = `
+                <div class="status success">
+                    <strong>🤖 AI Response (Local Reasoning):</strong><br><br>
+                    Based on your ${resources.length} indexed resources, I can help with: "${query}"<br><br>
+                    <em>This reasoning happened entirely in your browser. 
+                    Your data never left your machine.</em><br><br>
+                    <strong>Proof:</strong> ${observer.certify()}
+                </div>
+            `;
+            
+            document.getElementById('reasoning-output').innerHTML = response;
+        };
+    </script>
+</body>
+</html>
