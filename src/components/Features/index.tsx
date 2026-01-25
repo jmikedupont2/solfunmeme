@@ -8,8 +8,8 @@ const Features = () => {
       <section id="features" className="py-16 md:py-20 lg:py-28">
         <div className="container">
           <SectionTitle
-            title="Main Features"
-            paragraph="Discover how SOLFUNMEME revolutionizes DAO infrastructure with wallet-centric design, recursive governance, and event-driven blockchain architecture."
+            title="The Autopoietic System"
+            paragraph="A self-creating knowledge economy where contributions become proofs, proofs become value, and the system recreates itself through execution."
             center
           />
 

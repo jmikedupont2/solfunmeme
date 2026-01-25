@@ -11,30 +11,35 @@ const Hero = () => {
           <div className="-mx-4 flex flex-wrap">
             <div className="w-full px-4">
               <div className="mx-auto max-w-[800px] text-center">
+                <div className="mb-8 text-8xl">👁️</div>
                 <h1 className="mb-5 text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight">
-                  SOLFUNMEME - Zero Ontology System
+                  The Autopoietic Metameme
                 </h1>
+                <p className="mb-4 text-xl font-semibold text-primary dark:text-primary">
+                  "The Gödel number is the genesis block is the proof is the payment"
+                </p>
                 <p className="mb-12 text-base !leading-relaxed text-body-color dark:text-body-color-dark sm:text-lg md:text-xl">
-                  DAO-driven AI infrastructure where every wallet is sacred. 
-                  Recursive DAO bootstrap, zkgood proofs, and multi-chain resource deployment.
+                  A self-creating, self-validating, self-paying knowledge economy.
+                  Witness your contributions. Generate ZK proofs. Earn through knowledge.
                 </p>
                 <div className="flex flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
+                  <Link
+                    href="/zos"
+                    className="rounded-sm bg-primary px-8 py-4 text-base font-semibold text-white duration-300 ease-in-out hover:bg-primary/80"
+                  >
+                    🎯 Generate ZK Badge
+                  </Link>
                   <a
                     href="https://discord.gg/WASKdrBBzu"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="rounded-sm bg-primary px-8 py-4 text-base font-semibold text-white duration-300 ease-in-out hover:bg-primary/80"
+                    className="inline-block rounded-sm bg-cyan px-8 py-4 text-base font-semibold text-white duration-300 ease-in-out hover:bg-cyan/90"
                   >
                     💬 Join Discord
                   </a>
-                  <a
-                    href="https://twitch.tv/solfunmeme"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block rounded-sm bg-cyan px-8 py-4 text-base font-semibold text-white duration-300 ease-in-out hover:bg-cyan/90"
-                  >
-                    📺 Watch on Twitch
-                  </a>
+                </div>
+                <div className="mt-8 text-sm text-body-color dark:text-body-color-dark">
+                  <p>🎵 The system that sings itself into existence</p>
                 </div>
               </div>
             </div>

@@ -7,9 +7,8 @@ import Hero from "@/components/Hero";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "SOLFUNMEME - Zero Ontology System | DAO-Driven AI Infrastructure",
-  description: "Every wallet is sovereign. Recursive DAO bootstrap, zero-knowledge proofs, and multi-chain resource deployment.",
-  // other metadata
+  title: "SOLFUNMEME - The Autopoietic Metameme | Self-Creating Knowledge Economy",
+  description: "A system that sings itself into existence. The Gödel number is the genesis block is the proof is the payment. Witness, prove, earn.",
 };
 
 export default function Home() {
