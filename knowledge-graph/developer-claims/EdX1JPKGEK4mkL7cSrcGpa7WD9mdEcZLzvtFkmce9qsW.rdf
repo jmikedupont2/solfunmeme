@@ -1,0 +1,13 @@
+<div vocab="https://escaped-rdfa.org/" typeof="DeveloperClaim">
+  <span property="claimType">developer_ownership</span>
+  <span property="walletAddress">EdX1JPKGEK4mkL7cSrcGpa7WD9mdEcZLzvtFkmce9qsW</span>
+  <span property="role">developer</span>
+  <span property="status">pending_signature</span>
+  <span property="claimedAt">2026-01-25T19:24:53.627Z</span>
+  <meta property="assertion" content="Owner claims to control both this wallet and the development environment" />
+  <meta property="verificationMethod" content="wallet_signature" />
+  <meta property="verificationRequired" content="true" />
+  <meta property="signed" content="false" />
+  <meta property="project" content="solfunmeme" />
+  <meta property="environment" content="development" />
+</div>

@@ -1,0 +1,19 @@
+{
+  "claim_type": "developer_ownership",
+  "wallet_address": "EdX1JPKGEK4mkL7cSrcGpa7WD9mdEcZLzvtFkmce9qsW",
+  "claimed_at": "2026-01-25T19:24:53.627Z",
+  "status": "pending_signature",
+  "role": "developer",
+  "assertion": "Owner claims to control both this wallet and the development environment",
+  "verification": {
+    "method": "wallet_signature",
+    "required": true,
+    "signed": false
+  },
+  "metadata": {
+    "environment": "development",
+    "session": "kiro-cli-2026-01-25",
+    "project": "solfunmeme",
+    "commitment": null
+  }
+}
