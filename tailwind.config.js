@@ -38,14 +38,18 @@ module.exports = {
         current: "currentColor",
         transparent: "transparent",
         white: "#FFFFFF",
-        black: "#121723",
-        dark: "#1D2430",
-        primary: "#4A6CF7",
-        yellow: "#FBB040",
-        "bg-color-dark": "#171C28",
+        black: "#000000",
+        dark: "#230052", // Deep Blue-Purple
+        primary: "#DC143C", // Crimson Red
+        yellow: "#FFD700", // Golden
+        cyan: "#00FFFF", // Electric Cyan
+        emerald: "#00FF41", // Neon Green
+        orange: "#CC5500", // Warm Orange
+        gold: "#D4AF37", // Metallic Gold
+        "bg-color-dark": "#230052",
         "body-color": {
-          DEFAULT: "#788293",
-          dark: "#959CB1",
+          DEFAULT: "#F5F5DC", // Cream
+          dark: "#AEB7C0",
         },
         stroke: {
           stroke: "#E3E8EF",
@@ -53,7 +57,7 @@ module.exports = {
         },
         gray: {
           ...colors.gray,
-          dark: "#1E232E",
+          dark: "#230052",
           light: "#F0F2F9",
         },
       },
