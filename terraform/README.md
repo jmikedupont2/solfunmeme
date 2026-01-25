@@ -27,6 +27,14 @@
    
    twitter_client_id     = "xxxxx"
    twitter_client_secret = "xxxxx"
+   
+   telegram_bot_token = "xxxxx:xxxxx"
+   
+   rumble_client_id     = "xxxxx"
+   rumble_client_secret = "xxxxx"
+   
+   tiktok_client_id     = "xxxxx"
+   tiktok_client_secret = "xxxxx"
    ```
 
 3. **Initialize Terraform**:
@@ -71,6 +79,18 @@
 - Bot: https://t.me/BotFather
 - Create bot with `/newbot`
 - Get token
+- No redirect URI needed (uses bot token)
+
+### Rumble
+- Developer Portal: https://rumble.com/account/developer
+- Create Application
+- Redirect URI: `https://opczaaftecjpremkwwxi.supabase.co/auth/v1/callback`
+
+### TikTok
+- Developer Portal: https://developers.tiktok.com/
+- Create App → Login Kit
+- Redirect URI: `https://opczaaftecjpremkwwxi.supabase.co/auth/v1/callback`
+- Scopes: `user.info.basic`
 
 ## Workflow
 
