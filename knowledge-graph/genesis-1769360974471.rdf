@@ -1,0 +1,14 @@
+
+<div vocab="https://escaped-rdfa.org/" typeof="MetamemeFact">
+  <span property="subject">Metameme Coin Genesis</span>
+  <span property="predicate">implements</span>
+  <span property="object">Gödel Number = Genesis Block = Proof = Payment</span>
+  <span property="source">https://github.com/meta-introspector/meta-meme/issues/160</span>
+  <span property="commitment">ysujeKTblPoy+OQ4ZODWFVF3Ov814AyjiyYmuAuADEg=</span>
+  <span property="birthHash">YYHLbnOp7NpV7xOIuGTTnJVEcPNYDZ5xU+QIdTphlL0=</span>
+  <span property="publicKey">seynhPCg+qy2YCnPPLWAcVZyKh3ROJ6mkDoRV5BDaIw=</span>
+  <span property="timestamp">1769360974470</span>
+  <span property="shards">5</span>
+  <span property="attestation">genesis_concept_realized</span>
+  <meta property="selfVerified" content="true" />
+</div>
