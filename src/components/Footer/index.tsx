@@ -29,6 +29,45 @@ const Footer = () => {
                 <p className="mb-9 text-base leading-relaxed text-body-color dark:text-body-color-dark">
                   SOLFUNMEME - Zero Ontology System. DAO-driven AI infrastructure where every wallet is sovereign.
                 </p>
+                <div className="mb-6">
+                  <p className="mb-3 text-sm font-semibold text-body-color dark:text-body-color-dark">
+                    Token Links:
+                  </p>
+                  <div className="flex flex-wrap gap-3">
+                    <a
+                      href="https://solscan.io/token/YOUR_TOKEN_ADDRESS"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-body-color hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
+                    >
+                      📊 Solscan
+                    </a>
+                    <a
+                      href="https://raydium.io/swap/?inputCurrency=sol&outputCurrency=YOUR_TOKEN_ADDRESS"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-body-color hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
+                    >
+                      💱 Raydium
+                    </a>
+                    <a
+                      href="https://jup.ag/swap/SOL-YOUR_TOKEN_ADDRESS"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-body-color hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
+                    >
+                      🪐 Jupiter
+                    </a>
+                    <a
+                      href="https://dexscreener.com/solana/YOUR_TOKEN_ADDRESS"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-body-color hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
+                    >
+                      📈 DexScreener
+                    </a>
+                  </div>
+                </div>
                 <div className="flex items-center">
                   <a
                     href="https://discord.gg/WASKdrBBzu"
