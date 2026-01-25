@@ -58,6 +58,38 @@ function extractJSON(html) {
     }).filter(Boolean);
 }
 
+async function fetchTopHolders() {
+    return new Promise((resolve, reject) => {
+        const data = JSON.stringify({
+            jsonrpc: '2.0',
+            id: 1,
+            method: 'getTokenLargestAccounts',
+            params: [SOLANA_CA]
+        });
+
+        const options = {
+            hostname: 'api.mainnet-beta.solana.com',
+            port: 443,
+            path: '/',
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Content-Length': data.length
+            }
+        };
+
+        const req = https.request(options, (res) => {
+            let body = '';
+            res.on('data', (chunk) => body += chunk);
+            res.on('end', () => resolve(JSON.parse(body)));
+        });
+
+        req.on('error', reject);
+        req.write(data);
+        req.end();
+    });
+}
+
 async function crawlAndWitness() {
     console.log('🕷️  Recursive Solscan Crawler with zkTLS\n');
     console.log('CA:', SOLANA_CA);
@@ -73,6 +105,36 @@ async function crawlAndWitness() {
     const genesisData = JSON.parse(genesis);
     
     const results = [];
+    
+    // Fetch top holders from Solana RPC
+    console.log('📡 Fetching top holders from Solana RPC...');
+    try {
+        const holdersData = await fetchTopHolders();
+        const holders = holdersData.result?.value || [];
+        
+        console.log(`  ✓ Found ${holders.length} top holders\n`);
+        
+        results.push({
+            endpoint: 'solana-rpc:getTokenLargestAccounts',
+            url: 'https://api.mainnet-beta.solana.com',
+            status: 200,
+            timestamp: Date.now(),
+            dataSize: JSON.stringify(holdersData).length,
+            holders: holders.map((h, i) => ({
+                rank: i + 1,
+                address: h.address,
+                amount: h.amount,
+                decimals: h.decimals,
+                uiAmount: h.uiAmount
+            }))
+        });
+        
+        obs.lift_storage('top_holders', JSON.stringify(holders));
+        obs.witness_execution('solana-rpc', 'Fetched top holders');
+        
+    } catch (err) {
+        console.log(`  ✗ Error fetching holders: ${err.message}\n`);
+    }
     
     for (const endpoint of endpoints) {
         try {
