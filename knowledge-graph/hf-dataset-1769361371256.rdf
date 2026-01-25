@@ -1,0 +1,14 @@
+
+<div vocab="https://escaped-rdfa.org/" typeof="DatasetIntegration">
+  <span property="subject">HuggingFace Dataset Integration</span>
+  <span property="predicate">provides</span>
+  <span property="object">Distributed Knowledge Base</span>
+  <span property="source">https://huggingface.co/datasets/introspector/solfunmeme-index</span>
+  <span property="records">1,214,360</span>
+  <span property="files">5,057</span>
+  <span property="sourceSize">986MB</span>
+  <span property="commitment">jex4WHbtU4ZWAo/HSw0z9eOtOZwQTvmny9r74rIwRE8=</span>
+  <span property="purpose">P2P Solana chain validation via semantic analysis</span>
+  <span property="attestation">dataset_integrated</span>
+  <meta property="selfVerified" content="true" />
+</div>
