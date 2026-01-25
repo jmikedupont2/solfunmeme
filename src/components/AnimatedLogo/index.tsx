@@ -1,9 +1,10 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 
-const AnimatedLogo = ({ size = 200 }: { size?: number }) => {
+const AnimatedLogo = ({ size = 120 }: { size?: number }) => {
   const svgRef = useRef<SVGSVGElement>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [distance, setDistance] = useState(0);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -11,10 +12,15 @@ const AnimatedLogo = ({ size = 200 }: { size?: number }) => {
       const rect = svgRef.current.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
+      const dx = e.clientX - centerX;
+      const dy = e.clientY - centerY;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      
       setMousePos({
-        x: (e.clientX - centerX) / 10,
-        y: (e.clientY - centerY) / 10,
+        x: dx / 10,
+        y: dy / 10,
       });
+      setDistance(Math.min(dist / 2, 200));
     };
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
@@ -24,8 +30,9 @@ const AnimatedLogo = ({ size = 200 }: { size?: number }) => {
     const angle = (i * Math.PI * 2) / 8;
     const baseX = Math.cos(angle) * 60;
     const baseY = Math.sin(angle) * 60;
-    const endX = Math.cos(angle) * (120 + mousePos.x * Math.cos(angle));
-    const endY = Math.sin(angle) * (120 + mousePos.y * Math.sin(angle));
+    const growthFactor = 80 + distance;
+    const endX = Math.cos(angle) * growthFactor + mousePos.x * 2;
+    const endY = Math.sin(angle) * growthFactor + mousePos.y * 2;
     return { baseX, baseY, endX, endY };
   });
 
@@ -59,18 +66,18 @@ const AnimatedLogo = ({ size = 200 }: { size?: number }) => {
         <ellipse id="petalInner" rx="85" ry="175" fill="#FF1744" />
       </defs>
 
-      {/* Animated tentacles */}
+      {/* Animated tentacles that grow toward mouse */}
       <g transform="translate(200,200)">
         {tentacles.map((t, i) => (
           <path
             key={i}
-            d={`M${t.baseX},${t.baseY} Q${t.endX * 0.6},${t.endY * 0.6} ${t.endX},${t.endY}`}
+            d={`M${t.baseX},${t.baseY} Q${t.endX * 0.7},${t.endY * 0.7} ${t.endX},${t.endY}`}
             fill="none"
             stroke="#F5F5DC"
-            strokeWidth="15"
+            strokeWidth="12"
             strokeLinecap="round"
-            opacity="0.5"
-            className="transition-all duration-300"
+            opacity="0.6"
+            className="transition-all duration-200 ease-out"
           />
         ))}
       </g>
@@ -112,17 +119,17 @@ const AnimatedLogo = ({ size = 200 }: { size?: number }) => {
       </g>
 
       {/* Smaller golden symbol above */}
-      <g transform="translate(200,100)">
-        <circle cx="0" cy="0" r="6" fill="#FFD700" />
-        <circle cx="0" cy="30" r="6" fill="#FFD700" />
-        <circle cx="25" cy="15" r="6" fill="#FFD700" />
-        <circle cx="-25" cy="15" r="6" fill="#FFD700" />
-        <line x1="0" y1="0" x2="0" y2="30" stroke="#FFD700" strokeWidth="3" />
-        <line x1="0" y1="0" x2="25" y2="15" stroke="#FFD700" strokeWidth="3" />
-        <line x1="0" y1="0" x2="-25" y2="15" stroke="#FFD700" strokeWidth="3" />
-        <line x1="25" y1="15" x2="0" y2="30" stroke="#FFD700" strokeWidth="3" />
-        <line x1="-25" y1="15" x2="0" y2="30" stroke="#FFD700" strokeWidth="3" />
-        <line x1="25" y1="15" x2="-25" y2="15" stroke="#FFD700" strokeWidth="3" />
+      <g transform="translate(200,90)">
+        <circle cx="0" cy="0" r="5" fill="#FFD700" />
+        <circle cx="0" cy="25" r="5" fill="#FFD700" />
+        <circle cx="20" cy="12.5" r="5" fill="#FFD700" />
+        <circle cx="-20" cy="12.5" r="5" fill="#FFD700" />
+        <line x1="0" y1="0" x2="0" y2="25" stroke="#FFD700" strokeWidth="2.5" />
+        <line x1="0" y1="0" x2="20" y2="12.5" stroke="#FFD700" strokeWidth="2.5" />
+        <line x1="0" y1="0" x2="-20" y2="12.5" stroke="#FFD700" strokeWidth="2.5" />
+        <line x1="20" y1="12.5" x2="0" y2="25" stroke="#FFD700" strokeWidth="2.5" />
+        <line x1="-20" y1="12.5" x2="0" y2="25" stroke="#FFD700" strokeWidth="2.5" />
+        <line x1="20" y1="12.5" x2="-20" y2="12.5" stroke="#FFD700" strokeWidth="2.5" />
       </g>
     </svg>
   );

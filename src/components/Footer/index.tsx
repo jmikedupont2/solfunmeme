@@ -12,7 +12,7 @@ const Footer = () => {
             <div className="w-full px-4 md:w-1/2 lg:w-4/12 xl:w-5/12">
               <div className="mb-12 max-w-[360px] lg:mb-16">
                 <Link href="/" className="mb-8 inline-block">
-                  <AnimatedLogo size={140} />
+                  <AnimatedLogo size={120} />
                 </Link>
                 <p className="mb-9 text-base leading-relaxed text-body-color dark:text-body-color-dark">
                   SOLFUNMEME - Zero Ontology System. DAO-driven AI infrastructure where every wallet is sovereign.
