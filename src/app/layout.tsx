@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import ScrollToTop from "@/components/ScrollToTop";
 import { ErrorReporter } from "@/components/ErrorReporter";
+import WitnessButton from "@/components/WitnessButton";
 import { Inter } from "next/font/google";
 import "node_modules/react-modal-video/css/modal-video.css";
 import "@solana/wallet-adapter-react-ui/styles.css";
@@ -26,6 +27,7 @@ export default function RootLayout({
 
       <body className={`bg-[#FCFCFC] dark:bg-black ${inter.className}`}>
         <ErrorReporter />
+        <WitnessButton />
         <Providers>
           <Header />
           {children}

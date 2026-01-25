@@ -6,6 +6,10 @@ export function ErrorReporter() {
   useEffect(() => {
     console.log('🟢 ErrorReporter initialized');
     
+    // Store errors and logs in window
+    (window as any).__errorLog = [];
+    (window as any).__consoleLog = [];
+    
     // Catch unhandled errors
     const handleError = (event: ErrorEvent) => {
       console.log('🔴 Caught error, sending to server...');
@@ -19,6 +23,8 @@ export function ErrorReporter() {
         userAgent: navigator.userAgent,
         timestamp: Date.now()
       };
+      
+      (window as any).__errorLog.push(errorData);
       
       fetch('/api/log-error', {
         method: 'POST',
@@ -40,6 +46,8 @@ export function ErrorReporter() {
         timestamp: Date.now()
       };
       
+      (window as any).__errorLog.push(errorData);
+      
       fetch('/api/log-error', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -50,8 +58,6 @@ export function ErrorReporter() {
     // Catch console.error calls
     const originalError = console.error;
     console.error = (...args: any[]) => {
-      originalError(...args);
-      
       const errorData = {
         message: args.map(a => String(a)).join(' '),
         stack: new Error().stack,
@@ -61,6 +67,9 @@ export function ErrorReporter() {
         userAgent: navigator.userAgent,
         timestamp: Date.now()
       };
+      
+      (window as any).__consoleLog.push(errorData);
+      originalError(...args);
       
       fetch('/api/log-error', {
         method: 'POST',
