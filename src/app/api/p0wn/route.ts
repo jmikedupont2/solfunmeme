@@ -5,13 +5,20 @@ import bs58 from 'bs58';
 import nacl from 'tweetnacl';
 import crypto from 'crypto';
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_KEY!
-);
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_SERVICE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
 export async function POST(req: NextRequest) {
   try {
+    // Check if Supabase is configured
+    if (!supabaseUrl || !supabaseKey) {
+      return NextResponse.json({ 
+        success: false, 
+        error: 'Supabase not configured. Set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_KEY.' 
+      }, { status: 503 });
+    }
+
+    const supabase = createClient(supabaseUrl, supabaseKey);
     const { wallet, message, signature, role, timestamp } = await req.json();
 
     // Verify signature
