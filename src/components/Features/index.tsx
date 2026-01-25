@@ -9,7 +9,7 @@ const Features = () => {
         <div className="container">
           <SectionTitle
             title="Main Features"
-            paragraph="There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form."
+            paragraph="Discover how SOLFUNMEME revolutionizes DAO infrastructure with wallet-centric design, recursive governance, and event-driven blockchain architecture."
             center
           />
 
