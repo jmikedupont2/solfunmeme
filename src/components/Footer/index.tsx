@@ -27,8 +27,7 @@ const Footer = () => {
                   />
                 </Link>
                 <p className="mb-9 text-base leading-relaxed text-body-color dark:text-body-color-dark">
-                  SOLFUNMEME - Zero Ontology System. DAO-driven AI infrastructure where every wallet is sacred.
-                  Integer lobortis.
+                  SOLFUNMEME - Zero Ontology System. DAO-driven AI infrastructure where every wallet is sovereign.
                 </p>
                 <div className="flex items-center">
                   <a
