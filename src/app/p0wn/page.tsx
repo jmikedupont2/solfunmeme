@@ -1,17 +1,27 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { WalletContextProvider } from '@/components/WalletProvider';
 import bs58 from 'bs58';
 
 function P0wnContent() {
-  const { publicKey, signMessage } = useWallet();
+  const { publicKey, signMessage, wallet, ready, connected } = useWallet();
   const [status, setStatus] = useState('');
   const [badge, setBadge] = useState<any>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const proveOwnership = async () => {
+    if (!ready) {
+      setStatus('❌ Wallet not ready yet');
+      return;
+    }
+    
     if (!publicKey || !signMessage) {
       setStatus('❌ Connect wallet first');
       return;
@@ -66,7 +76,20 @@ function P0wnContent() {
 
         <div className="bg-gray-900 rounded-lg p-6 mb-6">
           <h2 className="text-xl font-bold mb-4">Connect Wallet</h2>
-          <WalletMultiButton />
+          {mounted ? (
+            <>
+              <WalletMultiButton />
+              {!ready && wallet && (
+                <p className="text-sm text-yellow-400 mt-2">
+                  ⏳ Wallet initializing...
+                </p>
+              )}
+            </>
+          ) : (
+            <div className="bg-gray-800 px-6 py-3 rounded-lg text-gray-400">
+              Loading wallet...
+            </div>
+          )}
           
           {publicKey && (
             <div className="mt-4">
@@ -81,7 +104,8 @@ function P0wnContent() {
             <h2 className="text-xl font-bold mb-4">Prove Ownership</h2>
             <button
               onClick={proveOwnership}
-              className="bg-purple-600 hover:bg-purple-700 px-6 py-3 rounded-lg font-bold"
+              disabled={!ready}
+              className="bg-purple-600 hover:bg-purple-700 px-6 py-3 rounded-lg font-bold disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Sign & Prove
             </button>

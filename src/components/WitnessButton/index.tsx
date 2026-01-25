@@ -39,10 +39,41 @@ export default function WitnessButton() {
       const json = JSON.stringify(witness, null, 2);
       const dataUrl = `data:application/json;base64,${btoa(json)}`;
       
-      // Copy to clipboard
-      await navigator.clipboard.writeText(dataUrl);
+      // Try multiple copy methods
+      let copied = false;
       
-      alert('✅ Witness captured and copied to clipboard!\nPaste it in chat.');
+      // Method 1: Clipboard API (check if it exists first)
+      if (navigator.clipboard?.writeText) {
+        try {
+          await navigator.clipboard.writeText(dataUrl);
+          copied = true;
+        } catch (e) {
+          console.log('Clipboard API failed, trying fallback');
+        }
+      }
+      
+      // Method 2: execCommand fallback
+      if (!copied) {
+        try {
+          const textarea = document.createElement('textarea');
+          textarea.value = dataUrl;
+          textarea.style.position = 'fixed';
+          textarea.style.opacity = '0';
+          document.body.appendChild(textarea);
+          textarea.select();
+          copied = document.execCommand('copy');
+          document.body.removeChild(textarea);
+        } catch (e) {
+          console.log('execCommand failed');
+        }
+      }
+      
+      if (copied) {
+        alert('✅ Witness captured and copied!\nPaste it in chat.');
+      } else {
+        // Show in prompt as fallback
+        prompt('Copy this witness data:', dataUrl);
+      }
       
     } catch (err) {
       console.error('Witness capture failed:', err);

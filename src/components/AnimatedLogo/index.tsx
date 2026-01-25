@@ -6,8 +6,15 @@ const AnimatedLogo = ({ size = 80 }: { size?: number }) => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [distance, setDistance] = useState(0);
   const [maxReached, setMaxReached] = useState<number[]>(Array(8).fill(80));
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+    
     const handleMouseMove = (e: MouseEvent) => {
       if (!svgRef.current) return;
       const rect = svgRef.current.getBoundingClientRect();
@@ -35,7 +42,7 @@ const AnimatedLogo = ({ size = 80 }: { size?: number }) => {
     };
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+  }, [mounted]);
 
   const tentacles = Array.from({ length: 8 }, (_, i) => {
     const angle = (i * Math.PI * 2) / 8;
@@ -57,6 +64,23 @@ const AnimatedLogo = ({ size = 80 }: { size?: number }) => {
     
     return { baseX, baseY, endX, endY, points };
   });
+
+  if (!mounted) {
+    // Return static version for SSR
+    return (
+      <svg
+        width={size}
+        height={size}
+        viewBox="-100 -100 600 600"
+        xmlns="http://www.w3.org/2000/svg"
+        style={{ overflow: "visible" }}
+      >
+        <circle cx="200" cy="200" r="60" fill="#00FFFF" opacity="0.3" />
+        <circle cx="200" cy="200" r="40" fill="#FFD700" opacity="0.5" />
+        <circle cx="200" cy="200" r="20" fill="#DC143C" />
+      </svg>
+    );
+  }
 
   return (
     <svg
