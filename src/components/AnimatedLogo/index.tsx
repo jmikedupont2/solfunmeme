@@ -44,7 +44,18 @@ const AnimatedLogo = ({ size = 120 }: { size?: number }) => {
     const growthFactor = 80 + distance;
     const endX = Math.cos(angle) * growthFactor + mousePos.x * 2;
     const endY = Math.sin(angle) * growthFactor + mousePos.y * 2;
-    return { baseX, baseY, endX, endY };
+    
+    // Generate spline points
+    const points = [];
+    const segments = 5;
+    for (let j = 0; j <= segments; j++) {
+      const t = j / segments;
+      const x = baseX + (endX - baseX) * t + Math.sin(t * Math.PI * 2) * 10;
+      const y = baseY + (endY - baseY) * t + Math.cos(t * Math.PI * 2) * 10;
+      points.push({ x, y });
+    }
+    
+    return { baseX, baseY, endX, endY, points };
   });
 
   return (
@@ -78,20 +89,30 @@ const AnimatedLogo = ({ size = 120 }: { size?: number }) => {
         <ellipse id="petalInner" rx="85" ry="175" fill="#FF1744" />
       </defs>
 
-      {/* Animated tentacles that grow toward mouse */}
+      {/* Animated tentacles with splines */}
       <g transform="translate(200,200)">
-        {tentacles.map((t, i) => (
-          <path
-            key={i}
-            d={`M${t.baseX},${t.baseY} Q${t.endX * 0.7},${t.endY * 0.7} ${t.endX},${t.endY}`}
-            fill="none"
-            stroke="#F5F5DC"
-            strokeWidth="12"
-            strokeLinecap="round"
-            opacity="0.6"
-            className="transition-all duration-200 ease-out"
-          />
-        ))}
+        {tentacles.map((t, i) => {
+          const pathData = t.points.reduce((acc, p, idx) => {
+            if (idx === 0) return `M${p.x},${p.y}`;
+            const prev = t.points[idx - 1];
+            const cpx = (prev.x + p.x) / 2;
+            const cpy = (prev.y + p.y) / 2;
+            return `${acc} Q${prev.x},${prev.y} ${cpx},${cpy}`;
+          }, '') + ` L${t.points[t.points.length - 1].x},${t.points[t.points.length - 1].y}`;
+          
+          return (
+            <path
+              key={i}
+              d={pathData}
+              fill="none"
+              stroke="#F5F5DC"
+              strokeWidth="12"
+              strokeLinecap="round"
+              opacity="0.6"
+              className="transition-all duration-200 ease-out"
+            />
+          );
+        })}
       </g>
 
       {/* Red petals */}
