@@ -8,6 +8,10 @@ terraform {
       source  = "integrations/github"
       version = "~> 6.0"
     }
+    http = {
+      source  = "hashicorp/http"
+      version = "~> 3.0"
+    }
   }
 }
 
@@ -20,6 +24,13 @@ variable "github_token" {
   description = "GitHub personal access token"
   type        = string
   sensitive   = true
+}
+
+variable "discord_bot_token" {
+  description = "Discord bot token (for creating OAuth app via API)"
+  type        = string
+  sensitive   = true
+  default     = ""
 }
 
 provider "google" {
@@ -62,6 +73,34 @@ resource "github_oauth_application" "solfunmeme" {
   authorization_callback_url = local.redirect_uri
   
   description = "SOLFUNMEME - Zero Ontology System for sovereign AI agents"
+}
+
+# Discord OAuth App (via API)
+resource "terraform_data" "discord_app" {
+  count = var.discord_bot_token != "" ? 1 : 0
+  
+  provisioner "local-exec" {
+    command = <<-EOT
+      curl -X POST https://discord.com/api/v10/applications \
+        -H "Authorization: Bot ${var.discord_bot_token}" \
+        -H "Content-Type: application/json" \
+        -d '{
+          "name": "SOLFUNMEME",
+          "description": "Zero Ontology System for sovereign AI agents",
+          "redirect_uris": ["${local.redirect_uri}"]
+        }' > ${path.module}/discord-app.json
+    EOT
+  }
+}
+
+data "local_file" "discord_app" {
+  count      = var.discord_bot_token != "" ? 1 : 0
+  filename   = "${path.module}/discord-app.json"
+  depends_on = [terraform_data.discord_app]
+}
+
+locals {
+  discord_app = var.discord_bot_token != "" ? jsondecode(data.local_file.discord_app[0].content) : null
 }
 
 # Discord OAuth App (manual - no Terraform provider)
@@ -107,22 +146,28 @@ output "github_client_secret" {
   description = "GitHub OAuth Client Secret (sensitive)"
 }
 
+output "discord_client_id" {
+  value       = var.discord_bot_token != "" ? local.discord_app.id : "Create manually at https://discord.com/developers/applications"
+  description = "Discord OAuth Client ID"
+}
+
+output "discord_client_secret" {
+  value       = var.discord_bot_token != "" ? local.discord_app.secret : "Get from Discord Developer Portal"
+  sensitive   = true
+  description = "Discord OAuth Client Secret (sensitive)"
+}
+
 output "manual_setup_instructions" {
   value = <<-EOT
   
   ✅ Automated (Terraform):
   - Google OAuth: ${google_oauth_client.solfunmeme.client_id}
   - GitHub OAuth: ${github_oauth_application.solfunmeme.client_id}
+  ${var.discord_bot_token != "" ? "- Discord OAuth: ${local.discord_app.id}" : ""}
   
   📝 Manual Setup Required:
   
-  1. Discord:
-     - Go to: https://discord.com/developers/applications
-     - Click "New Application" → Name: "SOLFUNMEME"
-     - OAuth2 → Add Redirect: ${local.redirect_uri}
-     - Copy Client ID and Secret
-  
-  2. Twitter/X:
+  ${var.discord_bot_token == "" ? "1. Discord:\n     - Go to: https://discord.com/developers/applications\n     - Click \"New Application\" → Name: \"SOLFUNMEME\"\n     - OAuth2 → Add Redirect: ${local.redirect_uri}\n     - Copy Client ID and Secret\n  \n  " : ""}2. Twitter/X:
      - Go to: https://developer.twitter.com/en/portal/dashboard
      - Create App → User authentication settings
      - Type: Web App
@@ -166,6 +211,8 @@ resource "local_file" "credentials" {
   
   github_client_id     = "${github_oauth_application.solfunmeme.client_id}"
   github_client_secret = "${github_oauth_application.solfunmeme.client_secret}"
+  
+  ${var.discord_bot_token != "" ? "discord_client_id     = \"${local.discord_app.id}\"\n  discord_client_secret = \"${local.discord_app.secret}\"\n  " : "# discord_client_id     = \"xxxxx\"\n  # discord_client_secret = \"xxxxx\""}
   
   # Add these after manual setup:
   # discord_client_id     = "xxxxx"

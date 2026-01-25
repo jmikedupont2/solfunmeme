@@ -1,6 +1,7 @@
 terraform.tfvars
 terraform.tfvars.example
 oauth-credentials.txt
+discord-app.json
 *.tfstate
 *.tfstate.*
 .terraform/
