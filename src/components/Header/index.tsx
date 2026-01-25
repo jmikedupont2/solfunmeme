@@ -57,7 +57,7 @@ const Header = () => {
                   sticky ? "py-5 lg:py-2" : "py-8"
                 } `}
               >
-                <AnimatedLogo size={sticky ? 80 : 120} />
+                <AnimatedLogo size={sticky ? 60 : 80} />
               </Link>
             </div>
             <div className="flex w-full items-center justify-between px-4">

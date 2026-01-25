@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 
-const AnimatedLogo = ({ size = 120 }: { size?: number }) => {
+const AnimatedLogo = ({ size = 80 }: { size?: number }) => {
   const svgRef = useRef<SVGSVGElement>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [distance, setDistance] = useState(0);
