@@ -110,9 +110,10 @@ impl Observer {
     }
 
     fn hash_data(&self, data: &str) -> String {
+        use base64::{Engine as _, engine::general_purpose};
         let mut hasher = Sha256::new();
         hasher.update(data.as_bytes());
-        base64::encode(hasher.finalize())
+        general_purpose::STANDARD.encode(hasher.finalize())
     }
 
     pub fn certify(&self) -> String {
@@ -127,9 +128,10 @@ impl Observer {
         
         let shards: Vec<String> = (0..n_shards)
             .map(|i| {
+                use base64::{Engine as _, engine::general_purpose};
                 let start = (i as usize) * chunk_size;
                 let end = ((i + 1) as usize * chunk_size).min(data.len());
-                base64::encode(&data[start..end])
+                general_purpose::STANDARD.encode(&data[start..end])
             })
             .collect();
 

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ZK Observer Test</title>
+</head>
+<body>
+    <h1>The Pupil Singularity</h1>
+    <div id="output"></div>
+    <button onclick="testObserver()">Generate ZK Badge</button>
+    
+    <script type="module">
+        import init, { Observer } from './pkg/wasm_observer.js';
+        
+        async function run() {
+            await init();
+            window.observer = new Observer();
+            
+            // Track mouse
+            document.addEventListener('mousemove', (e) => {
+                window.observer.observe_move(e.clientX, e.clientY);
+            });
+            
+            document.addEventListener('click', (e) => {
+                window.observer.observe_click(e.clientX, e.clientY);
+            });
+            
+            console.log('Observer initialized - the eye watches');
+        }
+        
+        window.testObserver = function() {
+            const obs = window.observer;
+            
+            // Lift data into proof space
+            obs.lift_url("https://solfunmeme.com");
+            obs.lift_storage("test_key", "test_value");
+            obs.attest("github", "verified_user");
+            
+            // Generate badge
+            const badge = obs.generate_badge(3);
+            const parsed = JSON.parse(badge);
+            
+            document.getElementById('output').innerHTML = `
+                <h2>ZK Badge Generated</h2>
+                <p><strong>Commitment:</strong> ${parsed.commitment}</p>
+                <p><strong>Shards:</strong> ${parsed.shards.length}</p>
+                <details>
+                    <summary>RDFa</summary>
+                    <pre>${parsed.rdfa}</pre>
+                </details>
+                <details>
+                    <summary>Full Witness</summary>
+                    <pre>${obs.export_witness()}</pre>
+                </details>
+            `;
+        };
+        
+        run();
+    </script>
+</body>
+</html>
