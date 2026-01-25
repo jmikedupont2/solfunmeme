@@ -155,9 +155,12 @@ const Header = () => {
                 >
                   💬 Join Discord
                 </a>
-                <div>
-                  <ThemeToggler />
-                </div>
+                <a
+                  href="/profile"
+                  className="ease-in-up shadow-btn hover:shadow-btn-hover hidden rounded-sm bg-primary px-8 py-3 text-base font-medium text-white transition duration-300 hover:bg-opacity-90 md:block md:px-9 lg:px-6 xl:px-9 ml-4"
+                >
+                  👤 Profile
+                </a>
               </div>
             </div>
           </div>
