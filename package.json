@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@supabase/auth-ui-react": "^0.4.7",
+    "@supabase/auth-ui-shared": "^0.1.8",
+    "@supabase/supabase-js": "^2.91.1",
     "eslint": "^9.0.0",
     "eslint-config-next": "^16.1.1",
     "next": "^14.1.0",
