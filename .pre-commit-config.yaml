@@ -1,0 +1,48 @@
+repos:
+  - repo: local
+    hooks:
+      - id: trailing-whitespace
+        name: trim trailing whitespace
+        entry: bash -c 'for file in "$@"; do sed -i "s/[[:space:]]*$//" "$file"; done'
+        language: system
+        types: [text]
+
+      - id: check-json
+        name: check json
+        entry: bash -c 'for file in "$@"; do python3 -c "import json; json.load(open(\"$file\"))" || exit 1; done'
+        language: system
+        files: \.json$
+
+      - id: no-binaries
+        name: prevent binary files
+        entry: bash
+        args: ['-c', 'for file in "$@"; do head -c 16 "$file" | xxd -p | grep -qE "^(7f454c46|4d5a|feedface|cefaedfe|cafebabe)" && echo "❌ Binary executable detected: $file" && exit 1; done; exit 0', '--']
+        language: system
+        exclude: '\.(png|jpg|jpeg|gif|ico|pdf|zip|tar|gz|bz2)$'
+
+      - id: shellcheck
+        name: shellcheck
+        entry: bash -c 'if ! command -v shellcheck >/dev/null 2>&1; then echo "❌ shellcheck is required but not installed"; exit 1; elif [ "$#" -eq 0 ]; then echo "⚠️  no shell files to check"; else shellcheck --severity=warning "$@"; fi'
+        language: system
+        files: \.sh$
+
+      - id: cargo-check
+        name: cargo check (offline)
+        entry: bash -c 'RUSTC_BOOTSTRAP=1 CARGO_NET_OFFLINE=true cargo check --all-features --offline'
+        language: system
+        files: \.rs$
+        pass_filenames: false
+
+      - id: rust-fmt
+        name: rust fmt (offline)
+        entry: bash -c 'RUSTC_BOOTSTRAP=1 cargo fmt --all'
+        language: system
+        files: \.rs$
+        pass_filenames: false
+
+      - id: rust-clippy
+        name: rust clippy (offline)
+        entry: bash -c 'RUSTC_BOOTSTRAP=1 CARGO_NET_OFFLINE=true cargo clippy --all-targets --all-features --offline'
+        language: system
+        files: \.rs$
+        pass_filenames: false

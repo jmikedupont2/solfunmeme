@@ -1,0 +1,23 @@
+# Step 1: Create OAuth Apps
+google_project_id = "your-gcp-project-id"
+github_token      = "ghp_your_github_token"
+
+# Step 2: Configure Supabase
+supabase_access_token = "sbp_your_supabase_token"
+
+# Add after Step 1 completes (from oauth-credentials.txt)
+google_client_id     = ""
+google_client_secret = ""
+github_client_id     = ""
+github_client_secret = ""
+
+# Add after manual setup
+discord_client_id     = ""
+discord_client_secret = ""
+twitter_client_id     = ""
+twitter_client_secret = ""
+telegram_bot_token    = ""
+rumble_client_id      = ""
+rumble_client_secret  = ""
+tiktok_client_id      = ""
+tiktok_client_secret  = ""
