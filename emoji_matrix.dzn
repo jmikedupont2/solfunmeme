@@ -1,0 +1,5 @@
+% Data file for emoji matrix solver
+% Target: DA51 Type 0 (Monster Walk Block)
+
+da51_type = 0;
+da51_data = 8080;  % Monster Walk sequence

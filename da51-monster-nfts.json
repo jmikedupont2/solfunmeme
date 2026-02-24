@@ -1,0 +1,348 @@
+{
+  "name": "DA51 Monster Group NFT Collection",
+  "description": "24^3 emoji encoding with Monster Group symmetries (71\u00d759\u00d747)",
+  "nfts": [
+    {
+      "name": "DA51 \ud83c\udfb2\ud83d\udd73\ufe0f\ud83c\udfaf - Monster Walk Block",
+      "description": "10-block Monster Walk with Bott periodicity",
+      "image": "https://solana.solfunmeme.com/node/nft-3d-qr.html?emoji=%F0%9F%8E%B2%F0%9F%95%B3%EF%B8%8F%F0%9F%8E%AF&da51=0xDA510001F9080000&color=ffff00&size=1.72&spacing=2.57&shape=cube&rotation=0.0007&bott=6",
+      "animation_url": "https://solana.solfunmeme.com/node/nft-3d-qr.html?emoji=%F0%9F%8E%B2%F0%9F%95%B3%EF%B8%8F%F0%9F%8E%AF&da51=0xDA510001F9080000&color=ffff00&size=1.72&spacing=2.57&shape=cube&rotation=0.0007&bott=6",
+      "external_url": "https://solana.solfunmeme.com/node/nft-3d-qr.html?emoji=%F0%9F%8E%B2%F0%9F%95%B3%EF%B8%8F%F0%9F%8E%AF&da51=0xDA510001F9080000&color=ffff00&size=1.72&spacing=2.57&shape=cube&rotation=0.0007&bott=6",
+      "attributes": [
+        {
+          "trait_type": "Emoji Code",
+          "value": "\ud83c\udfb2\ud83d\udd73\ufe0f\ud83c\udfaf"
+        },
+        {
+          "trait_type": "DA51 Address",
+          "value": "0xDA510001F9080000"
+        },
+        {
+          "trait_type": "Monster 71",
+          "value": 62
+        },
+        {
+          "trait_type": "Monster 59",
+          "value": 48
+        },
+        {
+          "trait_type": "Monster 47",
+          "value": 37
+        },
+        {
+          "trait_type": "Bott Class",
+          "value": 6
+        },
+        {
+          "trait_type": "Color",
+          "value": "#ffff00"
+        },
+        {
+          "trait_type": "Size",
+          "value": 1.7203389830508475
+        },
+        {
+          "trait_type": "Spacing",
+          "value": 2.574468085106383
+        },
+        {
+          "trait_type": "Shape",
+          "value": "cube"
+        },
+        {
+          "trait_type": "Rotation",
+          "value": 0.0007466363271587694
+        },
+        {
+          "trait_type": "Monster Group",
+          "value": "71\u00d759\u00d747"
+        }
+      ]
+    },
+    {
+      "name": "DA51 \ud83d\udd73\ufe0f\ud83c\udfaa\ud83c\udfac - AST Node",
+      "description": "Abstract Syntax Tree nodes with triple view",
+      "image": "https://solana.solfunmeme.com/node/nft-3d-qr.html?emoji=%F0%9F%95%B3%EF%B8%8F%F0%9F%8E%AA%F0%9F%8E%AC&da51=0xDA51E0000011C000&color=00ff00&size=1.54&spacing=2.79&shape=torus&rotation=0.0004&bott=0",
+      "animation_url": "https://solana.solfunmeme.com/node/nft-3d-qr.html?emoji=%F0%9F%95%B3%EF%B8%8F%F0%9F%8E%AA%F0%9F%8E%AC&da51=0xDA51E0000011C000&color=00ff00&size=1.54&spacing=2.79&shape=torus&rotation=0.0004&bott=0",
+      "external_url": "https://solana.solfunmeme.com/node/nft-3d-qr.html?emoji=%F0%9F%95%B3%EF%B8%8F%F0%9F%8E%AA%F0%9F%8E%AC&da51=0xDA51E0000011C000&color=00ff00&size=1.54&spacing=2.79&shape=torus&rotation=0.0004&bott=0",
+      "attributes": [
+        {
+          "trait_type": "Emoji Code",
+          "value": "\ud83d\udd73\ufe0f\ud83c\udfaa\ud83c\udfac"
+        },
+        {
+          "trait_type": "DA51 Address",
+          "value": "0xDA51E0000011C000"
+        },
+        {
+          "trait_type": "Monster 71",
+          "value": 0
+        },
+        {
+          "trait_type": "Monster 59",
+          "value": 41
+        },
+        {
+          "trait_type": "Monster 47",
+          "value": 42
+        },
+        {
+          "trait_type": "Bott Class",
+          "value": 0
+        },
+        {
+          "trait_type": "Color",
+          "value": "#00ff00"
+        },
+        {
+          "trait_type": "Size",
+          "value": 1.5423728813559323
+        },
+        {
+          "trait_type": "Spacing",
+          "value": 2.7872340425531914
+        },
+        {
+          "trait_type": "Shape",
+          "value": "torus"
+        },
+        {
+          "trait_type": "Rotation",
+          "value": 0.0004215701711168562
+        },
+        {
+          "trait_type": "Monster Group",
+          "value": "71\u00d759\u00d747"
+        }
+      ]
+    },
+    {
+      "name": "DA51 \ud83c\udf0d\ud83c\udfae\ud83d\udc8e - Monster Protocol",
+      "description": "Protocol negotiation and capability exchange",
+      "image": "https://solana.solfunmeme.com/node/nft-3d-qr.html?emoji=%F0%9F%8C%8D%F0%9F%8E%AE%F0%9F%92%8E&da51=0xDA52010000000001&color=00ff88&size=1.59&spacing=1.04&shape=cube&rotation=0.0004&bott=1",
+      "animation_url": "https://solana.solfunmeme.com/node/nft-3d-qr.html?emoji=%F0%9F%8C%8D%F0%9F%8E%AE%F0%9F%92%8E&da51=0xDA52010000000001&color=00ff88&size=1.59&spacing=1.04&shape=cube&rotation=0.0004&bott=1",
+      "external_url": "https://solana.solfunmeme.com/node/nft-3d-qr.html?emoji=%F0%9F%8C%8D%F0%9F%8E%AE%F0%9F%92%8E&da51=0xDA52010000000001&color=00ff88&size=1.59&spacing=1.04&shape=cube&rotation=0.0004&bott=1",
+      "attributes": [
+        {
+          "trait_type": "Emoji Code",
+          "value": "\ud83c\udf0d\ud83c\udfae\ud83d\udc8e"
+        },
+        {
+          "trait_type": "DA51 Address",
+          "value": "0xDA52010000000001"
+        },
+        {
+          "trait_type": "Monster 71",
+          "value": 33
+        },
+        {
+          "trait_type": "Monster 59",
+          "value": 43
+        },
+        {
+          "trait_type": "Monster 47",
+          "value": 1
+        },
+        {
+          "trait_type": "Bott Class",
+          "value": 1
+        },
+        {
+          "trait_type": "Color",
+          "value": "#00ff88"
+        },
+        {
+          "trait_type": "Size",
+          "value": 1.5932203389830508
+        },
+        {
+          "trait_type": "Spacing",
+          "value": 1.0425531914893618
+        },
+        {
+          "trait_type": "Shape",
+          "value": "cube"
+        },
+        {
+          "trait_type": "Rotation",
+          "value": 0.00039109521898792685
+        },
+        {
+          "trait_type": "Monster Group",
+          "value": "71\u00d759\u00d747"
+        }
+      ]
+    },
+    {
+      "name": "DA51 \ud83c\udfad\u2713\ud83d\udd73\ufe0f - Nested CID",
+      "description": "Content-addressed data with Monster structure",
+      "image": "https://solana.solfunmeme.com/node/nft-3d-qr.html?emoji=%F0%9F%8E%AD%E2%9C%93%F0%9F%95%B3%EF%B8%8F&da51=0xDA513AE3392F2B7F&color=88ff00&size=1.19&spacing=2.02&shape=octahedron&rotation=0.0005&bott=7",
+      "animation_url": "https://solana.solfunmeme.com/node/nft-3d-qr.html?emoji=%F0%9F%8E%AD%E2%9C%93%F0%9F%95%B3%EF%B8%8F&da51=0xDA513AE3392F2B7F&color=88ff00&size=1.19&spacing=2.02&shape=octahedron&rotation=0.0005&bott=7",
+      "external_url": "https://solana.solfunmeme.com/node/nft-3d-qr.html?emoji=%F0%9F%8E%AD%E2%9C%93%F0%9F%95%B3%EF%B8%8F&da51=0xDA513AE3392F2B7F&color=88ff00&size=1.19&spacing=2.02&shape=octahedron&rotation=0.0005&bott=7",
+      "attributes": [
+        {
+          "trait_type": "Emoji Code",
+          "value": "\ud83c\udfad\u2713\ud83d\udd73\ufe0f"
+        },
+        {
+          "trait_type": "DA51 Address",
+          "value": "0xDA513AE3392F2B7F"
+        },
+        {
+          "trait_type": "Monster 71",
+          "value": 47
+        },
+        {
+          "trait_type": "Monster 59",
+          "value": 27
+        },
+        {
+          "trait_type": "Monster 47",
+          "value": 24
+        },
+        {
+          "trait_type": "Bott Class",
+          "value": 7
+        },
+        {
+          "trait_type": "Color",
+          "value": "#88ff00"
+        },
+        {
+          "trait_type": "Size",
+          "value": 1.1864406779661016
+        },
+        {
+          "trait_type": "Spacing",
+          "value": 2.0212765957446805
+        },
+        {
+          "trait_type": "Shape",
+          "value": "octahedron"
+        },
+        {
+          "trait_type": "Rotation",
+          "value": 0.0004977575514391796
+        },
+        {
+          "trait_type": "Monster Group",
+          "value": "71\u00d759\u00d747"
+        }
+      ]
+    },
+    {
+      "name": "DA51 \ud83c\udfa8\u2600\ufe0f\ud83c\udfb2 - Harmonic Path",
+      "description": "Routing between 10-fold and 8-fold ways",
+      "image": "https://solana.solfunmeme.com/node/nft-3d-qr.html?emoji=%F0%9F%8E%A8%E2%98%80%EF%B8%8F%F0%9F%8E%B2&da51=0xDA515E2A00000001&color=ffff00&size=1.82&spacing=2.91&shape=icosahedron&rotation=0.0007&bott=6",
+      "animation_url": "https://solana.solfunmeme.com/node/nft-3d-qr.html?emoji=%F0%9F%8E%A8%E2%98%80%EF%B8%8F%F0%9F%8E%B2&da51=0xDA515E2A00000001&color=ffff00&size=1.82&spacing=2.91&shape=icosahedron&rotation=0.0007&bott=6",
+      "external_url": "https://solana.solfunmeme.com/node/nft-3d-qr.html?emoji=%F0%9F%8E%A8%E2%98%80%EF%B8%8F%F0%9F%8E%B2&da51=0xDA515E2A00000001&color=ffff00&size=1.82&spacing=2.91&shape=icosahedron&rotation=0.0007&bott=6",
+      "attributes": [
+        {
+          "trait_type": "Emoji Code",
+          "value": "\ud83c\udfa8\u2600\ufe0f\ud83c\udfb2"
+        },
+        {
+          "trait_type": "DA51 Address",
+          "value": "0xDA515E2A00000001"
+        },
+        {
+          "trait_type": "Monster 71",
+          "value": 46
+        },
+        {
+          "trait_type": "Monster 59",
+          "value": 52
+        },
+        {
+          "trait_type": "Monster 47",
+          "value": 45
+        },
+        {
+          "trait_type": "Bott Class",
+          "value": 6
+        },
+        {
+          "trait_type": "Color",
+          "value": "#ffff00"
+        },
+        {
+          "trait_type": "Size",
+          "value": 1.8220338983050848
+        },
+        {
+          "trait_type": "Spacing",
+          "value": 2.914893617021277
+        },
+        {
+          "trait_type": "Shape",
+          "value": "icosahedron"
+        },
+        {
+          "trait_type": "Rotation",
+          "value": 0.0007263196924061499
+        },
+        {
+          "trait_type": "Monster Group",
+          "value": "71\u00d759\u00d747"
+        }
+      ]
+    },
+    {
+      "name": "DA51 \ud83c\udfa8\u2600\ufe0f\ud83c\udfb2 - Shard ID",
+      "description": "Distributed storage sharding",
+      "image": "https://solana.solfunmeme.com/node/nft-3d-qr.html?emoji=%F0%9F%8E%A8%E2%98%80%EF%B8%8F%F0%9F%8E%B2&da51=0xDA515E2A00000001&color=ffff00&size=1.82&spacing=2.91&shape=icosahedron&rotation=0.0007&bott=6",
+      "animation_url": "https://solana.solfunmeme.com/node/nft-3d-qr.html?emoji=%F0%9F%8E%A8%E2%98%80%EF%B8%8F%F0%9F%8E%B2&da51=0xDA515E2A00000001&color=ffff00&size=1.82&spacing=2.91&shape=icosahedron&rotation=0.0007&bott=6",
+      "external_url": "https://solana.solfunmeme.com/node/nft-3d-qr.html?emoji=%F0%9F%8E%A8%E2%98%80%EF%B8%8F%F0%9F%8E%B2&da51=0xDA515E2A00000001&color=ffff00&size=1.82&spacing=2.91&shape=icosahedron&rotation=0.0007&bott=6",
+      "attributes": [
+        {
+          "trait_type": "Emoji Code",
+          "value": "\ud83c\udfa8\u2600\ufe0f\ud83c\udfb2"
+        },
+        {
+          "trait_type": "DA51 Address",
+          "value": "0xDA515E2A00000001"
+        },
+        {
+          "trait_type": "Monster 71",
+          "value": 46
+        },
+        {
+          "trait_type": "Monster 59",
+          "value": 52
+        },
+        {
+          "trait_type": "Monster 47",
+          "value": 45
+        },
+        {
+          "trait_type": "Bott Class",
+          "value": 6
+        },
+        {
+          "trait_type": "Color",
+          "value": "#ffff00"
+        },
+        {
+          "trait_type": "Size",
+          "value": 1.8220338983050848
+        },
+        {
+          "trait_type": "Spacing",
+          "value": 2.914893617021277
+        },
+        {
+          "trait_type": "Shape",
+          "value": "icosahedron"
+        },
+        {
+          "trait_type": "Rotation",
+          "value": 0.0007263196924061499
+        },
+        {
+          "trait_type": "Monster Group",
+          "value": "71\u00d759\u00d747"
+        }
+      ]
+    }
+  ]
+}
