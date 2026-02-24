@@ -1,0 +1,200 @@
+{
+  "name": "DA51 Classification NFT Collection",
+  "description": "Complete taxonomy of Monster Walk Addressing terms",
+  "image": "da51-collection.png",
+  "external_url": "https://solana.solfunmeme.com/node/",
+  "nfts": [
+    {
+      "name": "DA51 Type 0: Monster Walk Block",
+      "description": "10-block Monster Walk with Bott periodicity",
+      "image": "da51-type-0.png",
+      "external_url": "https://solana.solfunmeme.com/node/nft-3d-qr.html?da51=0",
+      "attributes": [
+        {
+          "trait_type": "DA51 Type",
+          "value": 0
+        },
+        {
+          "trait_type": "Type Name",
+          "value": "Monster Walk Block"
+        },
+        {
+          "trait_type": "Prefix",
+          "value": "0xDA51"
+        },
+        {
+          "trait_type": "Monster Group",
+          "value": "71\u00d759\u00d747"
+        },
+        {
+          "trait_type": "Classification",
+          "value": "DASL"
+        },
+        {
+          "trait_type": "Example",
+          "value": "0xDA510001F9080000"
+        }
+      ]
+    },
+    {
+      "name": "DA51 Type 1: AST Node",
+      "description": "Abstract Syntax Tree nodes with triple view",
+      "image": "da51-type-1.png",
+      "external_url": "https://solana.solfunmeme.com/node/nft-3d-qr.html?da51=1",
+      "attributes": [
+        {
+          "trait_type": "DA51 Type",
+          "value": 1
+        },
+        {
+          "trait_type": "Type Name",
+          "value": "AST Node"
+        },
+        {
+          "trait_type": "Prefix",
+          "value": "0xDA51"
+        },
+        {
+          "trait_type": "Monster Group",
+          "value": "71\u00d759\u00d747"
+        },
+        {
+          "trait_type": "Classification",
+          "value": "DASL"
+        },
+        {
+          "trait_type": "Example",
+          "value": "0xDA51E0000011C000"
+        }
+      ]
+    },
+    {
+      "name": "DA51 Type 2: Monster Protocol",
+      "description": "Protocol negotiation and capability exchange",
+      "image": "da51-type-2.png",
+      "external_url": "https://solana.solfunmeme.com/node/nft-3d-qr.html?da51=2",
+      "attributes": [
+        {
+          "trait_type": "DA51 Type",
+          "value": 2
+        },
+        {
+          "trait_type": "Type Name",
+          "value": "Monster Protocol"
+        },
+        {
+          "trait_type": "Prefix",
+          "value": "0xDA51"
+        },
+        {
+          "trait_type": "Monster Group",
+          "value": "71\u00d759\u00d747"
+        },
+        {
+          "trait_type": "Classification",
+          "value": "DASL"
+        },
+        {
+          "trait_type": "Example",
+          "value": "0xDA52010000000001"
+        }
+      ]
+    },
+    {
+      "name": "DA51 Type 3: Nested CID",
+      "description": "Content-addressed data with Monster structure",
+      "image": "da51-type-3.png",
+      "external_url": "https://solana.solfunmeme.com/node/nft-3d-qr.html?da51=3",
+      "attributes": [
+        {
+          "trait_type": "DA51 Type",
+          "value": 3
+        },
+        {
+          "trait_type": "Type Name",
+          "value": "Nested CID"
+        },
+        {
+          "trait_type": "Prefix",
+          "value": "0xDA51"
+        },
+        {
+          "trait_type": "Monster Group",
+          "value": "71\u00d759\u00d747"
+        },
+        {
+          "trait_type": "Classification",
+          "value": "DASL"
+        },
+        {
+          "trait_type": "Example",
+          "value": "0xDA513AE3392F2B7F"
+        }
+      ]
+    },
+    {
+      "name": "DA51 Type 4: Harmonic Path",
+      "description": "Routing between 10-fold and 8-fold ways",
+      "image": "da51-type-4.png",
+      "external_url": "https://solana.solfunmeme.com/node/nft-3d-qr.html?da51=4",
+      "attributes": [
+        {
+          "trait_type": "DA51 Type",
+          "value": 4
+        },
+        {
+          "trait_type": "Type Name",
+          "value": "Harmonic Path"
+        },
+        {
+          "trait_type": "Prefix",
+          "value": "0xDA51"
+        },
+        {
+          "trait_type": "Monster Group",
+          "value": "71\u00d759\u00d747"
+        },
+        {
+          "trait_type": "Classification",
+          "value": "DASL"
+        },
+        {
+          "trait_type": "Example",
+          "value": "0xDA515E2A00000001"
+        }
+      ]
+    },
+    {
+      "name": "DA51 Type 5: Shard ID",
+      "description": "Distributed storage sharding",
+      "image": "da51-type-5.png",
+      "external_url": "https://solana.solfunmeme.com/node/nft-3d-qr.html?da51=5",
+      "attributes": [
+        {
+          "trait_type": "DA51 Type",
+          "value": 5
+        },
+        {
+          "trait_type": "Type Name",
+          "value": "Shard ID"
+        },
+        {
+          "trait_type": "Prefix",
+          "value": "0xDA51"
+        },
+        {
+          "trait_type": "Monster Group",
+          "value": "71\u00d759\u00d747"
+        },
+        {
+          "trait_type": "Classification",
+          "value": "DASL"
+        },
+        {
+          "trait_type": "Example",
+          "value": "0xDA515E2A00000001"
+        }
+      ]
+    }
+  ]
+}

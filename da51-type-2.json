@@ -1,0 +1,32 @@
+{
+  "name": "DA51 Type 2: Monster Protocol",
+  "description": "Protocol negotiation and capability exchange",
+  "image": "da51-type-2.png",
+  "external_url": "https://solana.solfunmeme.com/node/nft-3d-qr.html?da51=2",
+  "attributes": [
+    {
+      "trait_type": "DA51 Type",
+      "value": 2
+    },
+    {
+      "trait_type": "Type Name",
+      "value": "Monster Protocol"
+    },
+    {
+      "trait_type": "Prefix",
+      "value": "0xDA51"
+    },
+    {
+      "trait_type": "Monster Group",
+      "value": "71\u00d759\u00d747"
+    },
+    {
+      "trait_type": "Classification",
+      "value": "DASL"
+    },
+    {
+      "trait_type": "Example",
+      "value": "0xDA52010000000001"
+    }
+  ]
+}

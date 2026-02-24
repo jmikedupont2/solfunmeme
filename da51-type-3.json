@@ -1,0 +1,32 @@
+{
+  "name": "DA51 Type 3: Nested CID",
+  "description": "Content-addressed data with Monster structure",
+  "image": "da51-type-3.png",
+  "external_url": "https://solana.solfunmeme.com/node/nft-3d-qr.html?da51=3",
+  "attributes": [
+    {
+      "trait_type": "DA51 Type",
+      "value": 3
+    },
+    {
+      "trait_type": "Type Name",
+      "value": "Nested CID"
+    },
+    {
+      "trait_type": "Prefix",
+      "value": "0xDA51"
+    },
+    {
+      "trait_type": "Monster Group",
+      "value": "71\u00d759\u00d747"
+    },
+    {
+      "trait_type": "Classification",
+      "value": "DASL"
+    },
+    {
+      "trait_type": "Example",
+      "value": "0xDA513AE3392F2B7F"
+    }
+  ]
+}

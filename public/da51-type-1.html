@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>DA51 Type 1: AST Node</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        body { margin: 0; background: #000; color: #0f0; font-family: monospace; }
+        #container { width: 100vw; height: 100vh; }
+        #info { position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.8); padding: 10px; }
+    </style>
+</head>
+<body>
+    <div id="info">
+        <h2>🕳️💎 DA51 Type 1</h2>
+        <p><strong>AST Node</strong></p>
+        <p>Example: <code>0xDA51E0000011C000</code></p>
+        <p>Monster Group: 71×59×47</p>
+    </div>
+    <div id="container"></div>
+    <script>
+        const typeNum = 1;
+        const example = "0xDA51E0000011C000";
+        
+        // Parse DA51 address
+        const addr = BigInt(example);
+        const prefix = (addr >> 48n) & 0xFFFFn;
+        const type = (addr >> 44n) & 0xFn;
+        const data = addr & 0xFFFFFFFFFFFn;
+        
+        // Create 3D visualization
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('container').appendChild(renderer.domElement);
+        
+        // Create cubes based on type number
+        const cubeSize = 1;
+        const spacing = 2;
+        
+        for (let i = 0; i < typeNum + 1; i++) {
+            const geometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
+            const material = new THREE.MeshPhongMaterial({ 
+                color: 0x00ff00,
+                emissive: 0x003300
+            });
+            const cube = new THREE.Mesh(geometry, material);
+            
+            const angle = (i / (typeNum + 1)) * Math.PI * 2;
+            const radius = 5;
+            cube.position.x = Math.cos(angle) * radius;
+            cube.position.z = Math.sin(angle) * radius;
+            
+            scene.add(cube);
+        }
+        
+        // Lights
+        const light = new THREE.PointLight(0xffffff, 1, 100);
+        light.position.set(10, 10, 10);
+        scene.add(light);
+        
+        const ambientLight = new THREE.AmbientLight(0x404040);
+        scene.add(ambientLight);
+        
+        camera.position.y = 5;
+        camera.position.z = 10;
+        camera.lookAt(0, 0, 0);
+        
+        // Animate
+        function animate() {
+            requestAnimationFrame(animate);
+            scene.rotation.y += 0.01;
+            renderer.render(scene, camera);
+        }
+        animate();
+    </script>
+</body>
+</html>

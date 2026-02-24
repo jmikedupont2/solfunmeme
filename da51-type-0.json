@@ -1,0 +1,32 @@
+{
+  "name": "DA51 Type 0: Monster Walk Block",
+  "description": "10-block Monster Walk with Bott periodicity",
+  "image": "da51-type-0.png",
+  "external_url": "https://solana.solfunmeme.com/node/nft-3d-qr.html?da51=0",
+  "attributes": [
+    {
+      "trait_type": "DA51 Type",
+      "value": 0
+    },
+    {
+      "trait_type": "Type Name",
+      "value": "Monster Walk Block"
+    },
+    {
+      "trait_type": "Prefix",
+      "value": "0xDA51"
+    },
+    {
+      "trait_type": "Monster Group",
+      "value": "71\u00d759\u00d747"
+    },
+    {
+      "trait_type": "Classification",
+      "value": "DASL"
+    },
+    {
+      "trait_type": "Example",
+      "value": "0xDA510001F9080000"
+    }
+  ]
+}
