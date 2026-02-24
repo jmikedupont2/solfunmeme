@@ -70,7 +70,7 @@ impl RpcCache {
             method: method.to_string(),
             params: params.clone(),
             response: response.clone(),
-            timestamp: chrono::Utc::now().timestamp(),
+            timestamp: js_sys::Date::now() as i64 / 1000,
         };
         
         // Save to memory

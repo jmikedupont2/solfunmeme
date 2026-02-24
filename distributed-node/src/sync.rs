@@ -21,7 +21,7 @@ impl SyncHub {
     #[wasm_bindgen(constructor)]
     pub fn new(hub_name: String) -> Self {
         Self {
-            hub_name,
+            hub_name: hub_name.clone(),
             models: (0..24).map(|id| ModelState {
                 id,
                 hub: hub_name.clone(),

@@ -1,9 +1,13 @@
 use crate::cache::RpcCache;
+#[cfg(not(target_arch = "wasm32"))]
 use reqwest::Client;
 use serde_json::json;
 use std::sync::{Arc, Mutex};
+#[cfg(not(target_arch = "wasm32"))]
 use std::time::Duration;
 
+#[cfg(not(target_arch = "wasm32"))]
+#[cfg(not(target_arch = "wasm32"))]
 #[derive(Clone)]
 pub struct CachedFetcher {
     cache: Arc<Mutex<RpcCache>>,
@@ -12,6 +16,7 @@ pub struct CachedFetcher {
     stats: Arc<Mutex<FetchStats>>,
 }
 
+#[cfg(not(target_arch = "wasm32"))]
 #[derive(Debug, Default)]
 pub struct FetchStats {
     pub cache_hits: usize,
@@ -20,6 +25,7 @@ pub struct FetchStats {
     pub errors: usize,
 }
 
+#[cfg(not(target_arch = "wasm32"))]
 impl CachedFetcher {
     pub fn new(cache_dir: &str, rpc_url: &str) -> Self {
         Self {

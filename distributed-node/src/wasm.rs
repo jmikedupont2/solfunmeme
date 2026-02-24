@@ -45,7 +45,8 @@ impl WasmNode {
         });
         
         let response = Request::post("https://api.mainnet-beta.solana.com")
-            .json(&request)?
+            .json(&request)
+            .map_err(|e| JsValue::from_str(&e.to_string()))?
             .send()
             .await
             .map_err(|e| JsValue::from_str(&e.to_string()))?
