@@ -32,6 +32,26 @@
         
         async function start() {
             await init();
+            
+            // Check for invite code in URL
+            const params = new URLSearchParams(window.location.search);
+            if (params.has('rpcs')) {
+                const emoji = params.get('emoji') || '???';
+                log(`📨 Loading invite code: ${emoji}`);
+                
+                try {
+                    const rpcsB64 = params.get('rpcs');
+                    const rpcsJson = atob(rpcsB64);
+                    const rpcs = JSON.parse(rpcsJson);
+                    log(`✓ Loaded ${rpcs.length} RPCs from invite`);
+                    
+                    // Store for WASM to use
+                    localStorage.setItem('rpc_endpoints', JSON.stringify(rpcs));
+                } catch (e) {
+                    log(`⚠ Failed to parse invite: ${e.message}`);
+                }
+            }
+            
             node = new WasmNode();
             window.node = node;
             log('✓ Node ready');

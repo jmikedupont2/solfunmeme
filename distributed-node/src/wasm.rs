@@ -4,6 +4,12 @@ use gloo_net::http::Request;
 use serde_json::json;
 
 const BOOTSTRAP_RPC: &str = "https://api.mainnet-beta.solana.com";
+const FALLBACK_RPCS: &[&str] = &[
+    "http://185.26.9.113:8899",
+    "http://88.216.198.205:8899",
+    "http://84.32.32.16:8899",
+    "http://207.148.14.220:8899",
+];
 
 #[wasm_bindgen]
 pub struct WasmNode {
@@ -18,16 +24,43 @@ impl WasmNode {
     #[wasm_bindgen(constructor)]
     pub fn new() -> Self {
         console::log_1(&"🕳️ SOLFUNMEME Node initialized".into());
+        
+        let mut endpoints: Vec<String> = FALLBACK_RPCS.iter().map(|s| s.to_string()).collect();
+        
+        // Try to load from URL params
+        if let Some(window) = web_sys::window() {
+            if let Ok(location) = window.location().search() {
+                if location.contains("rpcs=") {
+                    console::log_1(&"📨 Invite code detected in URL".into());
+                }
+            }
+        }
+        
         Self {
             cache_hits: 0,
             cache_misses: 0,
-            rpc_endpoints: vec![BOOTSTRAP_RPC.to_string()],
+            rpc_endpoints: endpoints,
             rpc_index: 0,
         }
     }
     
     pub async fn discover_nodes(&mut self) -> Result<String, JsValue> {
         console::log_1(&"🔍 Discovering RPC nodes...".into());
+        
+        // Load from localStorage first
+        if let Some(window) = web_sys::window() {
+            if let Ok(Some(storage)) = window.local_storage() {
+                if let Ok(Some(cached)) = storage.get_item("rpc_endpoints") {
+                    if let Ok(endpoints) = serde_json::from_str::<Vec<String>>(&cached) {
+                        if !endpoints.is_empty() {
+                            self.rpc_endpoints = endpoints;
+                            console::log_1(&format!("✓ Loaded {} cached endpoints", self.rpc_endpoints.len()).into());
+                            return Ok(format!("Loaded {} cached endpoints", self.rpc_endpoints.len()));
+                        }
+                    }
+                }
+            }
+        }
         
         let request = json!({
             "jsonrpc": "2.0",
@@ -46,25 +79,30 @@ impl WasmNode {
             .map_err(|e| JsValue::from_str(&e.to_string()))?;
         
         if let Some(nodes) = data["result"].as_array() {
-            self.rpc_endpoints.clear();
+            let mut new_endpoints = Vec::new();
             
             for node in nodes {
                 if let Some(rpc) = node["rpc"].as_str() {
-                    self.rpc_endpoints.push(format!("http://{}", rpc));
+                    new_endpoints.push(format!("http://{}", rpc));
                 }
             }
             
-            console::log_1(&format!("✓ Discovered {} RPC endpoints", self.rpc_endpoints.len()).into());
-            
-            // Save to localStorage for sharing
-            if let Some(window) = web_sys::window() {
-                if let Ok(Some(storage)) = window.local_storage() {
-                    let endpoints_json = serde_json::to_string(&self.rpc_endpoints).unwrap();
-                    let _ = storage.set_item("rpc_endpoints", &endpoints_json);
+            if !new_endpoints.is_empty() {
+                self.rpc_endpoints = new_endpoints;
+                console::log_1(&format!("✓ Discovered {} RPC endpoints", self.rpc_endpoints.len()).into());
+                
+                // Save to localStorage
+                if let Some(window) = web_sys::window() {
+                    if let Ok(Some(storage)) = window.local_storage() {
+                        let endpoints_json = serde_json::to_string(&self.rpc_endpoints).unwrap();
+                        let _ = storage.set_item("rpc_endpoints", &endpoints_json);
+                    }
                 }
+                
+                Ok(format!("Discovered {} endpoints", self.rpc_endpoints.len()))
+            } else {
+                Err(JsValue::from_str("No RPC endpoints found"))
             }
-            
-            Ok(format!("Discovered {} endpoints", self.rpc_endpoints.len()))
         } else {
             Err(JsValue::from_str("Failed to get cluster nodes"))
         }

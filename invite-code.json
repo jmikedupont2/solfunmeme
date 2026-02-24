@@ -1,0 +1,27 @@
+{
+  "url": "https://solana.solfunmeme.com/node/distributed-node.html?hub=0&rpcs=WyJodHRwOi8vMTg1LjI2LjkuMTEzOjg4OTkiLCAiaHR0cDovLzIwNy4xNDguMTQuMjIwOjg4OTkiLCAiaHR0cDovLzg4LjIxNi4xOTguMjA1Ojg4OTkiLCAiaHR0cDovLzE4NS4xOTEuMTE3LjE0Mjo4ODk5IiwgImh0dHA6Ly8zNS4xNTkuMTA1Ljk4Ojg4OTkiLCAiaHR0cDovLzY3LjIxMy4xMjEuMjE5Ojg4OTkiLCAiaHR0cDovLzIxNi4yMzguMTAyLjg5Ojg4OTkiLCAiaHR0cDovLzEwMy4xNC4yNy45Nzo4ODk5IiwgImh0dHA6Ly83Mi40Ni44NC4xOTU6ODg5OSIsICJodHRwOi8vNS4xOTkuMTY0LjIyMDo4ODk5Il0&emoji=%F0%9F%8E%AE%F0%9F%8C%99%F0%9F%8E%A8&monster=10x24x24",
+  "emoji": "\ud83c\udfae\ud83c\udf19\ud83c\udfa8",
+  "qr_data": "https://solana.solfunmeme.com/node/distributed-node.html?hub=0&rpcs=WyJodHRwOi8vMTg1LjI2LjkuMTEzOjg4OTkiLCAiaHR0cDovLzIwNy4xNDguMTQuMjIwOjg4OTkiLCAiaHR0cDovLzg4LjIxNi4xOTguMjA1Ojg4OTkiLCAiaHR0cDovLzE4NS4xOTEuMTE3LjE0Mjo4ODk5IiwgImh0dHA6Ly8zNS4xNTkuMTA1Ljk4Ojg4OTkiLCAiaHR0cDovLzY3LjIxMy4xMjEuMjE5Ojg4OTkiLCAiaHR0cDovLzIxNi4yMzguMTAyLjg5Ojg4OTkiLCAiaHR0cDovLzEwMy4xNC4yNy45Nzo4ODk5IiwgImh0dHA6Ly83Mi40Ni44NC4xOTU6ODg5OSIsICJodHRwOi8vNS4xOTkuMTY0LjIyMDo4ODk5Il0&emoji=%F0%9F%8E%AE%F0%9F%8C%99%F0%9F%8E%A8&monster=10x24x24",
+  "nft_metadata": {
+    "name": "SOLFUNMEME Node Invite \ud83c\udfae\ud83c\udf19\ud83c\udfa8",
+    "description": "Distributed node invite with 10 RPC endpoints",
+    "attributes": [
+      {
+        "trait_type": "Hub ID",
+        "value": 0
+      },
+      {
+        "trait_type": "RPC Count",
+        "value": 10
+      },
+      {
+        "trait_type": "Emoji Code",
+        "value": "\ud83c\udfae\ud83c\udf19\ud83c\udfa8"
+      },
+      {
+        "trait_type": "Monster Group",
+        "value": "71\u00d759\u00d747"
+      }
+    ]
+  }
+}
