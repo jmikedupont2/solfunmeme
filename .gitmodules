@@ -1,0 +1,3 @@
+[submodule "rpc-endpoints"]
+	path = rpc-endpoints
+	url = https://github.com/extrnode/rpc-solana-endpoints.git
