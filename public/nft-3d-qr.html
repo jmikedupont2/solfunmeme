@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>3D NFT QR Code</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        body { margin: 0; background: #000; color: #0f0; font-family: monospace; }
+        #container { width: 100vw; height: 100vh; }
+        #info { position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.8); padding: 10px; }
+    </style>
+</head>
+<body>
+    <div id="info">
+        <h2>🕳️💎 3D NFT QR Code</h2>
+        <p>Emoji: <span id="emoji">🎮🌙🎨</span></p>
+        <p>Hash: <span id="hash">...</span></p>
+        <p>Story: <span id="story">The Gaming Moon Artist</span></p>
+    </div>
+    <div id="container"></div>
+
+    <script>
+        // Parse URL to get invite data
+        const params = new URLSearchParams(window.location.search);
+        const emoji = params.get('emoji') || '🎮🌙🎨';
+        const rpcs = params.get('rpcs') || '';
+        
+        // Generate hash from emoji + rpcs
+        async function generateHash(data) {
+            const encoder = new TextEncoder();
+            const buffer = encoder.encode(data);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', buffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('').slice(0, 16);
+        }
+        
+        // Create 3D QR code
+        async function create3DQR() {
+            const hash = await generateHash(emoji + rpcs);
+            document.getElementById('hash').textContent = hash;
+            document.getElementById('emoji').textContent = emoji;
+            
+            // Setup Three.js
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.getElementById('container').appendChild(renderer.domElement);
+            
+            // Convert hash to QR pattern (8x8 grid from 16 hex chars)
+            const qrSize = 8;
+            const cubeSize = 0.8;
+            const spacing = 1;
+            
+            for (let i = 0; i < qrSize; i++) {
+                for (let j = 0; j < qrSize; j++) {
+                    const idx = (i * qrSize + j) % 16;
+                    const hexChar = hash[idx];
+                    const value = parseInt(hexChar, 16);
+                    
+                    // Create cube if bit is set
+                    if (value > 7) {
+                        const geometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
+                        const material = new THREE.MeshPhongMaterial({ 
+                            color: 0x00ff00,
+                            emissive: 0x003300
+                        });
+                        const cube = new THREE.Mesh(geometry, material);
+                        
+                        cube.position.x = (i - qrSize/2) * spacing;
+                        cube.position.y = (j - qrSize/2) * spacing;
+                        cube.position.z = 0;
+                        
+                        scene.add(cube);
+                    }
+                }
+            }
+            
+            // Add lights
+            const light = new THREE.PointLight(0xffffff, 1, 100);
+            light.position.set(10, 10, 10);
+            scene.add(light);
+            
+            const ambientLight = new THREE.AmbientLight(0x404040);
+            scene.add(ambientLight);
+            
+            camera.position.z = 15;
+            
+            // Animate
+            function animate() {
+                requestAnimationFrame(animate);
+                scene.rotation.y += 0.005;
+                renderer.render(scene, camera);
+            }
+            animate();
+            
+            // Resize handler
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        }
+        
+        create3DQR();
+    </script>
+</body>
+</html>
