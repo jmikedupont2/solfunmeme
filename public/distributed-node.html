@@ -35,6 +35,16 @@
             node = new WasmNode();
             window.node = node;
             log('✓ Node ready');
+            
+            // Discover RPC nodes
+            log('🔍 Discovering RPC nodes...');
+            try {
+                const result = await node.discover_nodes();
+                log(`✓ ${result}`);
+            } catch (e) {
+                log(`⚠ Discovery failed: ${e}`);
+            }
+            
             updateStats();
         }
         

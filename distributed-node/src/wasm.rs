@@ -3,18 +3,13 @@ use web_sys::console;
 use gloo_net::http::Request;
 use serde_json::json;
 
-const RPC_ENDPOINTS: &[&str] = &[
-    "https://api.mainnet-beta.solana.com",
-    "http://185.26.10.175:8899",
-    "http://216.238.102.89:8899",
-    "http://185.191.117.142:8899",
-    "http://207.148.14.220:8899",
-];
+const BOOTSTRAP_RPC: &str = "https://api.mainnet-beta.solana.com";
 
 #[wasm_bindgen]
 pub struct WasmNode {
     cache_hits: u32,
     cache_misses: u32,
+    rpc_endpoints: Vec<String>,
     rpc_index: usize,
 }
 
@@ -26,13 +21,61 @@ impl WasmNode {
         Self {
             cache_hits: 0,
             cache_misses: 0,
+            rpc_endpoints: vec![BOOTSTRAP_RPC.to_string()],
             rpc_index: 0,
         }
     }
     
-    fn next_rpc(&mut self) -> &'static str {
-        let endpoint = RPC_ENDPOINTS[self.rpc_index];
-        self.rpc_index = (self.rpc_index + 1) % RPC_ENDPOINTS.len();
+    pub async fn discover_nodes(&mut self) -> Result<String, JsValue> {
+        console::log_1(&"🔍 Discovering RPC nodes...".into());
+        
+        let request = json!({
+            "jsonrpc": "2.0",
+            "id": 1,
+            "method": "getClusterNodes"
+        });
+        
+        let response = Request::post(BOOTSTRAP_RPC)
+            .json(&request)
+            .map_err(|e| JsValue::from_str(&e.to_string()))?
+            .send()
+            .await
+            .map_err(|e| JsValue::from_str(&e.to_string()))?;
+        
+        let data: serde_json::Value = response.json().await
+            .map_err(|e| JsValue::from_str(&e.to_string()))?;
+        
+        if let Some(nodes) = data["result"].as_array() {
+            self.rpc_endpoints.clear();
+            
+            for node in nodes {
+                if let Some(rpc) = node["rpc"].as_str() {
+                    self.rpc_endpoints.push(format!("http://{}", rpc));
+                }
+            }
+            
+            console::log_1(&format!("✓ Discovered {} RPC endpoints", self.rpc_endpoints.len()).into());
+            
+            // Save to localStorage for sharing
+            if let Some(window) = web_sys::window() {
+                if let Ok(Some(storage)) = window.local_storage() {
+                    let endpoints_json = serde_json::to_string(&self.rpc_endpoints).unwrap();
+                    let _ = storage.set_item("rpc_endpoints", &endpoints_json);
+                }
+            }
+            
+            Ok(format!("Discovered {} endpoints", self.rpc_endpoints.len()))
+        } else {
+            Err(JsValue::from_str("Failed to get cluster nodes"))
+        }
+    }
+    
+    fn next_rpc(&mut self) -> String {
+        if self.rpc_endpoints.is_empty() {
+            return BOOTSTRAP_RPC.to_string();
+        }
+        let endpoint = self.rpc_endpoints[self.rpc_index].clone();
+        self.rpc_index = (self.rpc_index + 1) % self.rpc_endpoints.len();
         endpoint
     }
     
@@ -62,7 +105,7 @@ impl WasmNode {
             "params": serde_json::from_str::<serde_json::Value>(&params).unwrap_or(json!([]))
         });
         
-        let response = Request::post(rpc_url)
+        let response = Request::post(&rpc_url)
             .json(&request)
             .map_err(|e| JsValue::from_str(&e.to_string()))?
             .send()
