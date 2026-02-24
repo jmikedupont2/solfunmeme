@@ -1,0 +1,26 @@
+
+<!-- Add to distributed-node.html -->
+<script>
+const TRACKER_URLS = [
+    'https://pastebin.com/raw/XXXXXXXX',
+    'https://paste.ubuntu.com/p/XXXXXXXXX/plain/',
+    'https://dpaste.com/XXXXXXXXX.txt',
+];
+
+async function loadTrackers() {
+    for (const url of TRACKER_URLS) {
+        try {
+            const resp = await fetch(url);
+            const data = await resp.json();
+            console.log(`✓ Loaded ${data.peers.length} peers from tracker`);
+            
+            // Merge peers
+            for (const peer of data.peers) {
+                console.log(`  Peer: ${peer.emoji} (${peer.rpcs.length} RPCs)`);
+            }
+        } catch (e) {
+            console.log(`✗ Failed to load tracker: ${url}`);
+        }
+    }
+}
+</script>

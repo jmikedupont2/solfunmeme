@@ -56,6 +56,9 @@
             window.node = node;
             log('✓ Node ready');
             
+            // Load from pastebin trackers
+            await loadTrackers();
+            
             // Discover RPC nodes
             log('🔍 Discovering RPC nodes...');
             try {
@@ -89,6 +92,47 @@
             localStorage.clear();
             log('✓ Cache cleared');
         };
+        
+        // Pastebin tracker loader
+        const TRACKER_URLS = [
+            // Add your pastebin URLs here
+            // 'https://pastebin.com/raw/XXXXXXXX',
+        ];
+        
+        async function loadTrackers() {
+            if (TRACKER_URLS.length === 0) {
+                log('ℹ No trackers configured');
+                return;
+            }
+            
+            log('📡 Loading pastebin trackers...');
+            let totalPeers = 0;
+            
+            for (const url of TRACKER_URLS) {
+                try {
+                    const resp = await fetch(url);
+                    const data = await resp.json();
+                    
+                    log(`✓ Tracker: ${data.peers.length} peers`);
+                    totalPeers += data.peers.length;
+                    
+                    // Merge RPC endpoints
+                    for (const peer of data.peers) {
+                        log(`  ${peer.emoji}: ${peer.rpcs.length} RPCs`);
+                        
+                        // Store peer RPCs
+                        const key = `peer_${peer.peer_id}`;
+                        localStorage.setItem(key, JSON.stringify(peer.rpcs));
+                    }
+                } catch (e) {
+                    log(`✗ Tracker failed: ${url.slice(0, 40)}...`);
+                }
+            }
+            
+            if (totalPeers > 0) {
+                log(`✓ Loaded ${totalPeers} peers from trackers`);
+            }
+        }
         
         function log(msg) {
             const output = document.getElementById('output');

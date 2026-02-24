@@ -1,0 +1,21 @@
+{
+  "network": "solfunmeme-mainnet",
+  "updated": 1771950413,
+  "peers": [
+    {
+      "peer_id": "\ud83c\udfae\ud83c\udf19\ud83c\udfa8_413",
+      "emoji": "\ud83c\udfae\ud83c\udf19\ud83c\udfa8",
+      "rpcs": [
+        "http://185.26.9.113:8899",
+        "http://207.148.14.220:8899",
+        "http://88.216.198.205:8899",
+        "http://185.191.117.142:8899",
+        "http://35.159.105.98:8899"
+      ],
+      "timestamp": 1771950413,
+      "version": "0.1.0",
+      "network": "solfunmeme-mainnet"
+    }
+  ],
+  "monster_group": "71x59x47"
+}
