@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: solfunmeme-node
+    env: static
+    buildCommand: cd distributed-node && rustup target add wasm32-unknown-unknown && cargo install wasm-pack && wasm-pack build --target web --out-dir ../public/pkg
+    staticPublishPath: ./public
+    envVars:
+      - key: RUST_VERSION
+        value: "1.75"

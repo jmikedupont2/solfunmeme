@@ -1,0 +1,8 @@
+[build]
+  publish = "public"
+  command = "cd distributed-node && rustup target add wasm32-unknown-unknown && cargo install wasm-pack && wasm-pack build --target web --out-dir ../public/pkg"
+
+[[redirects]]
+  from = "/api/*"
+  to = "https://your-project.supabase.co/:splat"
+  status = 200
