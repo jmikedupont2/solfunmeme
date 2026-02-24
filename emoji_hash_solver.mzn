@@ -16,10 +16,10 @@ array[1..16] of 0..15: target_hash;
 
 % Hash function approximation (simplified)
 function var int: simple_hash(var int: e1, var int: e2, var int: e3) =
-    ((e1 * 71 + e2 * 59 + e3 * 47) mod 65536);
+    ((e1 * 71 + e2 * 59 + e3 * 47) mod 256);
 
-% Constraint: generated hash matches target
-constraint simple_hash(emoji1, emoji2, emoji3) == sum(i in 1..16)(target_hash[i] * pow(16, 16-i));
+% Constraint: hash matches first 2 hex digits
+constraint simple_hash(emoji1, emoji2, emoji3) == target_hash[1] * 16 + target_hash[2];
 
 % Monster Group constraint
 constraint (emoji1 * 71 + emoji2 * 59 + emoji3 * 47) mod 196883 >= 0;
