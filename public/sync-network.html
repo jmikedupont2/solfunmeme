@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>24-Model Sync Network</title>
+    <style>
+        body { font-family: monospace; background: #000; color: #0f0; padding: 20px; }
+        .hub { border: 1px solid #0f0; padding: 10px; margin: 10px; display: inline-block; }
+        .model { background: #111; padding: 5px; margin: 2px; }
+        .synced { color: #ff0; }
+        button { background: #0f0; color: #000; border: none; padding: 10px; margin: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>🕳️💎 24-Model Sync Network</h1>
+    
+    <div>
+        <button onclick="syncAll()">Sync All Hubs</button>
+        <button onclick="updateModel()">Update Random Model</button>
+        <span class="synced" id="status"></span>
+    </div>
+    
+    <div id="hubs"></div>
+
+    <script type="module">
+        import init, { SyncHub } from './pkg/solfunmeme_distributed.js';
+        
+        const HUBS = {
+            hf: 'https://huggingface.co/spaces/jmikedupont2/solfunmeme-node',
+            vercel: 'https://solfunmeme-distributed.vercel.app',
+            cf: 'https://solfunmeme.workers.dev'
+        };
+        
+        let localHub;
+        
+        async function start() {
+            await init();
+            localHub = new SyncHub('browser');
+            window.localHub = localHub;
+            render();
+            setInterval(syncAll, 30000); // Auto-sync every 30s
+        }
+        
+        window.syncAll = async function() {
+            let total = 0;
+            for (const [name, url] of Object.entries(HUBS)) {
+                try {
+                    const resp = await fetch(`${url}/models`);
+                    const models = await resp.text();
+                    const synced = localHub.sync_from(models);
+                    total += synced;
+                } catch (e) {
+                    console.log(`${name} sync failed:`, e);
+                }
+            }
+            document.getElementById('status').textContent = `Synced ${total} models`;
+            render();
+        };
+        
+        window.updateModel = function() {
+            const id = Math.floor(Math.random() * 24);
+            const data = `data_${Date.now()}`;
+            const timestamp = Date.now();
+            localHub.update_model(id, data, timestamp);
+            
+            // Push to all hubs
+            for (const [name, url] of Object.entries(HUBS)) {
+                fetch(`${url}/update`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id, data, timestamp })
+                }).catch(() => {});
+            }
+            
+            render();
+        };
+        
+        function render() {
+            const models = JSON.parse(localHub.get_models());
+            const html = `
+                <div class="hub">
+                    <h3>Browser (Local)</h3>
+                    ${models.map(m => `
+                        <div class="model">
+                            Model ${m.id}: ${m.data.slice(0, 20) || 'empty'}
+                            <br><small>${new Date(m.timestamp).toLocaleTimeString()}</small>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            document.getElementById('hubs').innerHTML = html;
+        }
+        
+        start();
+    </script>
+</body>
+</html>
