@@ -3,10 +3,19 @@ use web_sys::console;
 use gloo_net::http::Request;
 use serde_json::json;
 
+const RPC_ENDPOINTS: &[&str] = &[
+    "https://api.mainnet-beta.solana.com",
+    "http://185.26.10.175:8899",
+    "http://216.238.102.89:8899",
+    "http://185.191.117.142:8899",
+    "http://207.148.14.220:8899",
+];
+
 #[wasm_bindgen]
 pub struct WasmNode {
     cache_hits: u32,
     cache_misses: u32,
+    rpc_index: usize,
 }
 
 #[wasm_bindgen]
@@ -17,7 +26,14 @@ impl WasmNode {
         Self {
             cache_hits: 0,
             cache_misses: 0,
+            rpc_index: 0,
         }
+    }
+    
+    fn next_rpc(&mut self) -> &'static str {
+        let endpoint = RPC_ENDPOINTS[self.rpc_index];
+        self.rpc_index = (self.rpc_index + 1) % RPC_ENDPOINTS.len();
+        endpoint
     }
     
     pub async fn fetch_rpc(&mut self, method: String, params: String) -> Result<String, JsValue> {
@@ -35,7 +51,9 @@ impl WasmNode {
         }
         
         self.cache_misses += 1;
-        console::log_1(&format!("→ RPC call: {}", method).into());
+        
+        let rpc_url = self.next_rpc();
+        console::log_1(&format!("→ RPC call: {} via {}", method, rpc_url).into());
         
         let request = json!({
             "jsonrpc": "2.0",
@@ -44,7 +62,7 @@ impl WasmNode {
             "params": serde_json::from_str::<serde_json::Value>(&params).unwrap_or(json!([]))
         });
         
-        let response = Request::post("https://api.mainnet-beta.solana.com")
+        let response = Request::post(rpc_url)
             .json(&request)
             .map_err(|e| JsValue::from_str(&e.to_string()))?
             .send()
