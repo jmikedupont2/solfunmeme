@@ -1,0 +1,39 @@
+name: Deploy to HuggingFace
+
+on:
+  push:
+    branches: [ feature/distributed-node ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Build WASM
+      run: |
+        rustup target add wasm32-unknown-unknown
+        cargo install wasm-pack
+        cd distributed-node
+        wasm-pack build --target web --out-dir ../public/pkg
+    
+    - name: Deploy to HF Space
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.HF_SSH_KEY }}" > ~/.ssh/id_ed25519
+        chmod 600 ~/.ssh/id_ed25519
+        ssh-keyscan -t ed25519 huggingface.co >> ~/.ssh/known_hosts
+        
+        git config --global user.email "action@github.com"
+        git config --global user.name "GitHub Action"
+        
+        git clone git@hf.co:spaces/jmikedupont2/solfunmeme-node hf-space
+        cd hf-space
+        
+        cp ../public/distributed-node.html index.html
+        cp -r ../public/pkg .
+        cp ../README_HF.md README.md
+        
+        git add .
+        git commit -m "Deploy from GitHub" || true
+        git push origin main
