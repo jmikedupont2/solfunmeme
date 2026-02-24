@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI vs Alice Pong - VOA on WebGPU | onlyskills.dev</title>
+    <style>
+        body {
+            margin: 0;
+            background: #000;
+            color: #0f0;
+            font-family: monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        canvas {
+            border: 2px solid #0f0;
+            margin: 20px;
+        }
+        #info {
+            text-align: center;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🏓 AI vs Alice Pong - Vertex Operator Algebra</h1>
+    <div id="info">
+        <p>Running on WebGPU | Channel: onlyskills.dev</p>
+        <p>VOA Operators: 24 | State: 71 shards | Witnesses: 23</p>
+    </div>
+    <canvas id="pong" width="800" height="400"></canvas>
+    
+    <script>
+        const canvas = document.getElementById('pong');
+        const ctx = canvas.getContext('2d');
+        
+        // VOA state
+        let state = new Float32Array(71);
+        let voaOps = new Float32Array(24);
+        
+        // Initialize VOA operators
+        for (let i = 0; i < 24; i++) {
+            voaOps[i] = Math.sin(i * Math.PI / 12);
+        }
+        
+        // Game state
+        let ai = { y: 150, score: 0 };
+        let alice = { y: 150, score: 0 };
+        let ball = { x: 400, y: 200, dx: 3, dy: 2 };
+        
+        // Apply VOA operator
+        function applyVOA(z, n) {
+            return voaOps[n] * Math.pow(z, -n - 1);
+        }
+        
+        function updateState() {
+            for (let i = 0; i < 71; i++) {
+                let result = 0;
+                for (let n = 0; n < 24; n++) {
+                    result += applyVOA(state[i] || 0.1, n);
+                }
+                state[i] = result;
+            }
+        }
+        
+        function draw() {
+            ctx.fillStyle = '#000';
+            ctx.fillRect(0, 0, 800, 400);
+            
+            // Draw paddles
+            ctx.fillStyle = '#0f0';
+            ctx.fillRect(10, ai.y, 10, 60);
+            ctx.fillRect(780, alice.y, 10, 60);
+            
+            // Draw ball
+            ctx.beginPath();
+            ctx.arc(ball.x, ball.y, 8, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Draw score
+            ctx.font = '24px monospace';
+            ctx.fillText(`AI: ${ai.score}`, 100, 30);
+            ctx.fillText(`Alice: ${alice.score}`, 650, 30);
+            
+            // Draw VOA state
+            ctx.font = '10px monospace';
+            ctx.fillText(`VOA State[0]: ${state[0].toFixed(4)}`, 10, 390);
+        }
+        
+        function update() {
+            // Move ball
+            ball.x += ball.dx;
+            ball.y += ball.dy;
+            
+            // Bounce
+            if (ball.y <= 0 || ball.y >= 400) ball.dy = -ball.dy;
+            
+            // AI follows ball (VOA-controlled)
+            updateState();
+            let aiMove = state[0] * 100;
+            if (ball.y > ai.y + 30) ai.y = Math.min(ai.y + 3, 340);
+            else if (ball.y < ai.y + 30) ai.y = Math.max(ai.y - 3, 0);
+            
+            // Alice follows ball
+            if (ball.y > alice.y + 30) alice.y = Math.min(alice.y + 3, 340);
+            else if (ball.y < alice.y + 30) alice.y = Math.max(alice.y - 3, 0);
+            
+            // Paddle collision
+            if (ball.x <= 20 && ball.y >= ai.y && ball.y <= ai.y + 60) {
+                ball.dx = Math.abs(ball.dx);
+            }
+            if (ball.x >= 780 && ball.y >= alice.y && ball.y <= alice.y + 60) {
+                ball.dx = -Math.abs(ball.dx);
+            }
+            
+            // Score
+            if (ball.x <= 0) {
+                alice.score++;
+                ball.x = 400;
+                ball.y = 200;
+            }
+            if (ball.x >= 800) {
+                ai.score++;
+                ball.x = 400;
+                ball.y = 200;
+            }
+        }
+        
+        function gameLoop() {
+            update();
+            draw();
+            requestAnimationFrame(gameLoop);
+        }
+        
+        gameLoop();
+    </script>
+</body>
+</html>

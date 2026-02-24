@@ -10,6 +10,9 @@ jobs:
     strategy:
       matrix:
         include:
+          - os: ubuntu-latest
+            target: wasm32-unknown-unknown
+            name: wasm
           - os: windows-latest
             target: x86_64-pc-windows-msvc
             name: windows
@@ -36,11 +39,21 @@ jobs:
         echo "[target.aarch64-linux-android]" >> ~/.cargo/config.toml
         echo "linker = \"$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android21-clang\"" >> ~/.cargo/config.toml
     
+    - name: Build WASM
+      if: matrix.name == 'wasm'
+      working-directory: distributed-node
+      run: |
+        rustup target add wasm32-unknown-unknown
+        cargo install wasm-pack
+        wasm-pack build --target web --out-dir ../public/pkg
+    
     - name: Build
+      if: matrix.name != 'wasm'
       working-directory: distributed-node
       run: cargo build --release --target ${{ matrix.target }}
     
     - name: Package
+      if: matrix.name != 'wasm'
       run: |
         mkdir release
         if [ "${{ matrix.os }}" = "windows-latest" ]; then

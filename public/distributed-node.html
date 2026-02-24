@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SOLFUNMEME Distributed Node</title>
+    <style>
+        body { font-family: monospace; background: #000; color: #0f0; padding: 20px; }
+        #output { border: 1px solid #0f0; padding: 10px; height: 400px; overflow-y: scroll; }
+        button { background: #0f0; color: #000; border: none; padding: 10px; margin: 5px; cursor: pointer; }
+        input { background: #111; color: #0f0; border: 1px solid #0f0; padding: 5px; width: 300px; }
+        .stats { color: #ff0; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <h1>🕳️💎 SOLFUNMEME Distributed Node (WASM)</h1>
+    
+    <div class="stats" id="stats">Initializing...</div>
+    
+    <div>
+        <input id="account" placeholder="Account address" value="BwUTq7fS6sfUmHDwAiCQZ3asSiPEapW5zDrsbwtapump">
+        <button onclick="fetchSignatures()">Get Signatures</button>
+        <button onclick="clearCache()">Clear Cache</button>
+    </div>
+    
+    <div id="output"></div>
+
+    <script type="module">
+        import init, { WasmNode } from './pkg/solfunmeme_distributed.js';
+        
+        let node;
+        
+        async function start() {
+            await init();
+            node = new WasmNode();
+            window.node = node;
+            log('✓ Node ready');
+            updateStats();
+        }
+        
+        window.fetchSignatures = async function() {
+            const account = document.getElementById('account').value;
+            log(`→ Fetching signatures for ${account.slice(0, 20)}...`);
+            
+            try {
+                const result = await node.fetch_rpc(
+                    'getSignaturesForAddress',
+                    JSON.stringify([account, {limit: 10}])
+                );
+                const data = JSON.parse(result);
+                log(`✓ Got ${data.result?.length || 0} signatures`);
+                updateStats();
+            } catch(e) {
+                log(`✗ Error: ${e}`);
+            }
+        };
+        
+        window.clearCache = function() {
+            localStorage.clear();
+            log('✓ Cache cleared');
+        };
+        
+        function log(msg) {
+            const output = document.getElementById('output');
+            output.innerHTML += `${new Date().toLocaleTimeString()} ${msg}<br>`;
+            output.scrollTop = output.scrollHeight;
+        }
+        
+        function updateStats() {
+            document.getElementById('stats').textContent = node.get_stats();
+        }
+        
+        window.log = log;
+        start();
+    </script>
+</body>
+</html>
